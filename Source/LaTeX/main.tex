@@ -1,0 +1,359 @@
+\documentclass[12pt]{article}
+
+% --- Essential Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{caption}
+
+% --- Tom Rocks Maths Style Palette ---
+\definecolor{oxfordblue}{RGB}{0, 33, 71}
+\definecolor{mathyellow}{RGB}{255, 225, 0}
+\definecolor{brightblue}{RGB}{0, 150, 255}
+\definecolor{boxgreen}{RGB}{40, 167, 69}
+
+% --- Custom Colored Box Templates ---
+\newtcolorbox{proofbox}[1]{
+  colback=mathyellow!10!white,
+  colframe=mathyellow!80!black,
+  fonttitle=\bfseries\color{black},
+  title=#1,
+  arc=0mm,
+  boxrule=1pt
+}
+
+\newtcolorbox{theorembox}[1]{
+  colback=brightblue!10!white,
+  colframe=brightblue!80!black,
+  fonttitle=\bfseries,
+  title=#1,
+  arc=0mm,
+  boxrule=1pt
+}
+
+\newtcolorbox{funnybox}[1]{
+  colback=boxgreen!10!white,
+  colframe=boxgreen!80!black,
+  fonttitle=\bfseries,
+  title=#1,
+  arc=0mm,
+  boxrule=1pt
+}
+
+% --- Header and Footer Settings ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{Why Topologists Would Hate the Krusty Krab}}
+\rhead{Tom Rocks Maths}
+\cfoot{\thepage}
+
+% --- Title Styling ---
+\titleformat{\section}{\large\bfseries\color{oxfordblue}}{}{0em}{}[\titlerule]
+
+\begin{document}
+
+% --- Cover Page ---
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \textbf{Why Topologists Would Hate Working at the Krusty Krab}} \\[0.5cm]
+    {\Large \textbf{A Topologist Rant on Bikini Bottom}} \\[1.5cm]
+    {\large \textbf{By Rayyan Hanif Bin Rizal}} \\[1.5cm]
+    \vfill
+
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, title=Morphological Survey of the Krusty Krab]
+    \centering
+    \includegraphics[width=0.7\linewidth]{KrustyKrabStock.png}
+\end{tcolorbox}
+    
+    \begin{abstract}
+    In this essay, we delve into the topological nightmare that is the Krusty Krab. While most people see a fast-food restaurant, a mathematician sees a violation of every known law of continuous deformation. We analyze the "SquarePants" manifold, the non-orientability of the kitchen, and why the Euler Characteristic makes order-taking an impossible task. \textbf{If you like your burgers with a side of algebraic topology, you’ve come to the right place.}
+    \end{abstract}
+    \vfill
+    
+\end{titlepage}
+
+\newpage
+\setstretch{1.2}
+
+\section{1. Is the Krusty Krab a Living Hell for Topologists?}
+Imagine you’re a topologist applying for a job at the Krusty Krab. Mr. Krabs hands you a spatula and asks you to flip a Krabby Patty. To a normal person, this is a simple $180^\circ$ rotation in Euclidean space. But to you, a person who lives and breathes the **\textbf{Brouwer Fixed Point Theorem}**, this is a crisis of continuity. 
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.8\textwidth, arc=0mm, boxrule=1pt, title=Visual Evidence: The Krusty Krab Manifold]
+    \centering
+    \includegraphics[width=0.9\linewidth]{The_Krusty_Krab_in_TPSS.jpg}
+    \captionof{figure}{\small \textit{The Krusty Krab—a facility that defies every known law of continuous deformation.}}
+    \label{fig:krusty_krab_intro}
+\end{tcolorbox}
+\end{center}
+
+Topology is the study of properties that don't change when you stretch or squish an object. But the Krusty Krab is a place where "stretch and squish" isn't a mathematical theory—it's a lifestyle. How can you work in a kitchen where the fry cook can turn his arms into a Möbius strip just to reach the pickles? This is why we hate it there.
+
+\section{2. The Genus of the Fry Cook}
+The first thing that would drive a topologist mad is the physical structure of SpongeBob himself. In our world, we like to classify objects by their \textbf{Genus} ($g$)—the number of holes. 
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=\textwidth, arc=0mm, boxrule=1pt, title=Topological Phase Transition: Genus Variance in \textit{S. quadratum}]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{MV5BMmRkZmU1YmQtYWUyNS00MzU5LTlmZmYtNGNiZDdkYWJmNjk2XkEyXkFqcGc@._V1_.jpg}
+        \captionof{figure}{\small \textit{State A: Low-genus configuration.}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering 
+        \includegraphics[width=\linewidth]{E7ENVxCWUAcQAr8.jpg}
+        \captionof{figure}{\small \textit{State B: High-genus configuration.}}
+    \end{minipage}
+
+    \vspace{0.4cm}
+    \small \textbf{Technical Summary:} Note the radical shift in the Betti number $\beta_1$ between the two states. In State A, we observe a standard porous manifold, while State B exhibits a "Swiss Cheese" topology that would require a supercomputer to map. How does he keep changing his holes? From a mathematical standpoint, he is essentially performing real-time surgery on his own manifold structure just to get a laugh out of a starfish. It's statistically improbable and topologically insulting.
+\end{tcolorbox}
+\end{center}
+
+\begin{proofbox}{The Euler Characteristic Crisis}
+A standard kitchen sponge is a high-genus manifold. If SpongeBob has $n$ pores that pass all the way through his body, his Euler Characteristic ($\chi$) is:
+\begin{equation}
+\chi = 2 - 2g
+\end{equation}
+Every time SpongeBob breathes, he potentially changes his genus. One moment he’s a solid block ($g=0$), and the next he’s a sieve ($g=40$). In topology, changing your genus is "illegal" without a pair of scissors. SpongeBob performs "topological surgery" on himself every time he laughs. How can you count the inventory when the staff is constantly changing their fundamental group?
+\end{proofbox}
+
+\subsection{Quantitative Porosity}
+We define the subject $S$ (SquarePants) as a compact, orientable surface. While a standard cube has an Euler characteristic $\chi = 2$, SpongeBob’s pores act as handles ($g$). For every pore observed, we apply:
+$$\chi(S) = V - E + F = 2 - 2g$$
+If we observe a local pore density of $\rho = 40 \text{ pores/cm}^2$ over a surface area of $A = 600 \text{ cm}^2$, the genus $g$ is approximately $24,000$. Thus:
+$$\chi(S) = 2 - 2(24,000) = -47,998$$
+This confirms that SpongeBob is not a simple solid, but a high-genus topological manifold of extreme complexity.
+
+\section{3. The Non-Orientable Kitchen}
+In a professional kitchen, "In" and "Out" doors are very important. But in the Krusty Krab, space is... flexible. We’ve seen characters enter the kitchen and exit from a completely different part of the building. To a topologist, this suggests that the Krusty Krab is a **\textbf{non-orientable surface}**.
+
+\begin{theorembox}{The Klein Bottle Kitchen}
+If a space is non-orientable, it means there is no consistent "inside" or "outside." A famous example is the Klein Bottle. If the Krusty Krab is a Klein Bottle, a customer could walk through the front door and find themselves inside the grill without ever passing through the metal.
+\begin{equation}
+\chi(\text{Klein Bottle}) = 0
+\end{equation}
+Mathematically, this explains why Squidward can never escape. He’s trapped on a one-sided surface where every path leads back to the cash register.
+\end{theorembox}
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.85\textwidth, arc=0mm, boxrule=1pt, title=Linear Transactions in a Non-Euclidean Space]
+    \centering
+    \includegraphics[width=0.9\linewidth]{MV5BZTY4NzUxNzItNTc5NC00YWQ0LTk5NDAtOTllNDgyMDk2ZjYxXkEyXkFqcGc@._V1_.jpg}
+    \captionof{figure}{\small \textit{Squidward attempting to apply a 1D queueing model to a customer whose patience is a decreasing function of the local curvature. Notice the look of resignation: he knows the transition maps are broken.}}
+    \label{fig:squidward_register}
+\end{tcolorbox}
+\end{center}
+
+\section{4. The Gauss-Bonnet Violation}
+Mr. Krabs loves money, but he clearly hates the **Gauss-Bonnet Theorem**. This theorem tells us that the total curvature of a surface is fixed by its topology.
+
+\begin{funnybox}{Why SquarePants is a Lie}
+If SpongeBob is a cube, his curvature is zero on the faces and concentrated at the corners. But he is constantly inflating, deflating, and turning into a circle.
+\begin{equation}
+\iint_M K \, dA = 2\pi \chi(M)
+\end{equation}
+Whenever SpongeBob turns into a round "SpongeBob CirclePants," he is redistributing his Gaussian curvature $K$. To do this continuously is fine, but SpongeBob does it in discrete "frames." This creates "topological singularities" that would make a mathematician's head spin faster than a boat-mobile.
+\end{funnybox}
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.85\textwidth, arc=0mm, boxrule=1pt, title=The Gauss-Bonnet Catastrophe]
+    \centering
+    \includegraphics[width=0.9\linewidth]{MV5BNTUwOWViODktZWFkNS00YWM4LTljOTEtZWIyNTNjNDg2NDAzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg}
+    \captionof{figure}{\small \textit{A flagrant violation of the Gauss-Bonnet theorem. SpongeBob has smoothed his Gaussian curvature to nearly zero, yet his genus remains ill-defined. \textbf{Patrick is rightfully concerned about the lack of topological consistency in this neighborhood.}}}
+    \label{fig:gauss_bonnet_fail}
+\end{tcolorbox}
+\end{center}
+
+\subsection{The Brouwer Constraint}
+The Krusty Krab floor plan $K$ is a disk-like, compact, convex set. According to Brouwer, any continuous function $f: K \to K$ must have at least one fixed point $x_0$ such that $f(x_0) = x_0$. 
+In this system, the mapping $f$ represents the movement of employees. Given Squidward's rigid boundary conditions (the boat-register interface), his position is the solution to the identity map. We calculate the probability of escape $P(e)$ as:
+$$P(e) = \lim_{t \to \infty} \oint_{\partial K} \vec{v} \cdot d\vec{s} = 0$$
+This integral proves that Squidward is mathematically bound to his coordinate $(x, y)_{boat}$.
+
+\section{5. The Brouwer Fixed Point of the Krabby Patty}
+Even the cooking is problematic. Every time SpongeBob kneads the dough for a bun, he is applying a continuous map $f$ from a disk $D^2$ to itself. 
+
+\begin{theorembox}{The Fixed Point Rule}
+
+According to Brouwer, there must be at least one point $x$ such that $f(x) = x$. 
+
+This means that no matter how hard you stir the sauce or flip the patty, there is one molecule of meat that \textit{never moves}. It stays in the exact same spot. For a topologist, this is a beautiful truth. For a health inspector, it's a nightmare.
+\end{theorembox}
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.85\textwidth, arc=0mm, boxrule=1pt, title=The Brouwer Fixed Point Inspection]
+    \centering
+    \includegraphics[width=0.9\linewidth]{spongebob-squarepants-nickelodeon-050516.png}
+    \captionof{figure}{\small \textit{SpongeBob verifying the Fixed Point Theorem. By applying a continuous deformation to the Krabby Patty (flipping), he is mathematically guaranteed that at least one sesame seed remains in its original position. He isn't just a fry cook; he's a lab technician for Brouwer.}}
+    \label{fig:brouwer_patty}
+\end{tcolorbox}
+\end{center}
+
+\section{6. The Clarinet: A Cylindrical Manifold with Variable Boundary Conditions}
+
+If a topologist were forced to share a wall with Squidward, they wouldn't complain about the noise—they’d complain about the \textbf{Dirichlet boundary conditions}. To a mathematician, a clarinet is a 1-dimensional manifold (a tube) embedded in 3D space. 
+
+The sound produced is governed by the eigenvalues of the Laplacian operator $\Delta$ on the air column. However, Squidward’s instrument is a topological nightmare. By covering and uncovering holes, he is fundamentally altering the \textbf{connectivity} of the manifold. 
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.85\textwidth, arc=0mm, boxrule=1pt, title=Spectral Geometry and the Clarinet Crisis]
+    \centering
+    \includegraphics[width=0.9\linewidth]{why-squidward-cant-play-the-clarinet-v0-i1iw1ndh42ta1.png}
+    \captionof{figure}{\small \textit{Subject $S$ (Squidward) attempting to solve the wave equation on a cylindrical manifold. Notice the intense physical strain required to maintain Dirichlet boundary conditions while the surrounding medium exhibits non-linear topological interference.}}
+    \label{fig:squidward_clarinet}
+\end{tcolorbox}
+\end{center}
+
+\begin{theorembox}{The Spectral Geometry of Squidward's Failure}
+Let $\displaystyle M$ be a cylindrical manifold of length $\displaystyle L$. The resonant frequencies $\displaystyle \omega$ are determined by the spectrum of the Laplacian $\displaystyle \Delta$ under specific boundary conditions at the holes $\displaystyle h_i \in \partial M$:
+\begin{equation}
+\Delta \psi + \lambda \psi = 0, \quad \psi|_{h_i} = 0 \text{ (Open Hole)}, \quad \frac{\partial \psi}{\partial n}\Big|_{h_i} = 0 \text{ (Closed)}
+\end{equation}
+By toggling the state of $h_i$, Squidward is performing a \textbf{Topological Phase Shift} on the manifold’s spectrum.
+\end{theorembox}
+
+When a hole is open, the pressure at that point must be atmospheric (a Dirichlet condition); when it is closed, the air is constrained by the tube (a Neumann condition). Most musicians call this "playing a C sharp," but a topologist calls it "reconfiguring the boundary of a Riemannian manifold to shift the fundamental frequency." 
+
+\begin{proofbox}{Lemma: The Laughter Coupling Effect}
+The proximity of SpongeBob’s manifold $S$ (the porous cube) to Squidward’s manifold $M$ (the cylinder) creates a perturbation in the local metric tensor $g_{\mu\nu}$. We can model the total system energy $E_{total}$ as:
+\begin{equation}
+E_{total} = \int_M \mathcal{L}_{clarinet} \, dV + \int_S \mathcal{L}_{sponge} \, dV + \oint_{\partial M \cap \partial S} \gamma(\psi_M, \psi_S) \, dA
+\end{equation}
+Because SpongeBob’s laughter is a high-frequency stochiastic oscillation, the coupling term $\gamma$ introduces "noise" into the eigenvalues of $M$.
+\end{proofbox}
+
+\textbf{The reason Squidward plays so poorly is likely because he’s trying to solve the wave equation in a space where the metric tensor is constantly being squashed by SpongeBob’s laughter next door.} This interaction between two adjacent manifolds—Squidward’s quiet, ordered cylinder and SpongeBob’s chaotic, porous cube—creates a coupling effect that would make any researcher in spectral geometry \textbf{quit on the spot}.
+
+\begin{center}
+\textit{``Dumb people are always blissfully unaware of how topologically inconsistent they are.'' --- Squidward Tentacles (Mathematical Translation)}
+\end{center}
+
+\section{7. The Patrick Star Singularity: Contractible Spaces}
+We must contrast the complexity of SpongeBob with his best friend, Patrick Star. While SpongeBob is a high-genus, porous sieve, Patrick is what we call a \textbf{star-convex set} (fittingly). 
+
+In topology, a space is \textbf{contractible} if it can be continuously shrunk to a single point. Patrick is the living embodiment of a null-homotopic space. No matter how much he stretches his five limbs, there are no "holes" in Patrick. You can take any closed loop drawn on Patrick's surface and shrink it to a point without leaving his body.
+
+\begin{proofbox}{The Homotopy of the Dim-Witted}
+Let $P$ represent the topological space of Patrick. Since $P$ is star-convex, there exists a point $x_0 \in P$ (likely his belly button) such that for all $x \in P$, the line segment from $x$ to $x_0$ lies entirely within $P$. 
+\begin{equation}
+H(x, t) = (1-t)x + tx_0
+\end{equation}
+This homotopy $H$ proves that Patrick is \textbf{homotopy equivalent} to a single point. Mathematically, this explains his character: no matter how much space he takes up, his "topological essence" is equivalent to absolutely nothing. 
+\end{proofbox}
+
+While SpongeBob has a non-trivial fundamental group $\pi_1$ due to his pores, Patrick’s fundamental group is simply the trivial group $\{0\}$. He is "Simply Connected," which is a polite way for a mathematician to say that there isn't much going on upstairs. If a topologist worked at the Krusty Krab, they would prefer serving Patrick; at least his geometry doesn't change every time he takes a bite of a burger.
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.85\textwidth, arc=0mm, boxrule=1pt, title=The Patrick Star Singularity]
+    \centering
+    \includegraphics[width=0.9\linewidth]{hall_monitor_125_1000x.jpg}
+    \captionof{figure}{\small \textit{Subject $P$ demonstrating a local topological collapse. Note the conical accessory—it acts as a physical representation of a singular point where the manifold's smoothness breaks down. \textbf{Is he angry, or is he just struggling with the concept of a contractible space?}}}
+    \label{fig:patrick_singularity}
+\end{tcolorbox}
+\end{center}
+
+
+\section{8. The "Ripped Pants" Continuity Lemma}
+Finally, we must address the most famous event in Bikini Bottom’s history: the Ripped Pants incident. To a casual viewer, it’s a joke. To a topologist, it’s a \textbf{Topological Catastrophe}.
+
+For a transformation to be a homeomorphism, it must be \textbf{continuous}. If we define a function $f$ that maps SpongeBob's pants at time $t_1$ (intact) to time $t_2$ (ripped), we see a jump in the Betti numbers. 
+
+\begin{funnybox}{The Betti Number Jump}
+The first Betti number $\beta_1$ counts the number of 1-dimensional holes.
+\begin{enumerate}
+    \item \textbf{Intact Pants:} $\beta_1 = 2$ (two leg holes).
+    \item \textbf{Ripped Pants:} $\beta_1 = 1$ (the two holes have merged into one giant tear).
+\end{enumerate}
+Since the Betti number is a topological invariant, and it changed instantaneously, the function $f$ cannot be continuous. This proves that SpongeBob’s humor relies on violating the \textbf{Intermediate Value Theorem}. You cannot "gradually" rip pants in topology; you are either a torus or you are not. 
+\end{funnybox}
+
+This lack of continuity is exactly why a topologist would find the Krusty Krab stressful. In a standard kitchen, if you drop a plate, it might break, but the pieces remain homeomorphic to disks. In Bikini Bottom, objects don't just break; they change their underlying manifold structure. A topologist would spend their entire shift screaming about the loss of invariant properties while Mr. Krabs screams about the loss of the plate.
+
+\begin{center}
+\begin{tcolorbox}[colframe=oxfordblue, colback=white, width=0.85\textwidth, arc=0mm, boxrule=1pt, title=Rupture of the Fabric Manifold]
+    \centering
+    \includegraphics[width=0.5\linewidth]{maxresdefault.jpg} 
+    \captionof{figure}{\small \textit{Subject K (Krabs) experiencing a localized entropy spike. Note the fragmentation of the manifold: his eyes have reached escape velocity, and the background grid is dissolving. This is what happens when you try to calculate tax on a non-orientable surface.}}
+    \label{fig:ripped_pants_lemma}
+\end{tcolorbox}
+\end{center}
+
+
+\section{9. The Final Rant}
+So, why would topologists hate working at the Krusty Krab? Because nothing is invariant. The Betti numbers are jumping around, the fundamental groups are collapsing, and the boundaries are ill-defined. 
+
+Bikini Bottom is a place where math goes to die—or at least, where it goes to have a very strange time. SpongeBob doesn't "satisfy" topology; he mocks it. He is a 2-manifold with a 4th-dimensional sense of humor. Furthermore, a topologist would find it impossible to even navigate the restaurant. In manifold theory, we use an \textbf{Atlas}—a collection of local charts that cover the space. But the floor plan of the Krusty Krab changes depending on the needs of the plot. One day the freezer is in the back left; the next day it’s a sprawling labyrinth. This implies the metric tensor of Bikini Bottom is non-stationary and possibly dependent on the observer's comedic timing. To map this place, you wouldn't need a surveyor; you'd need a specialist in non-Hausdorff spaces and someone with a very high tolerance for sea salt. 
+
+
+And honestly? I think I'll stick to my chalkboard and leave the patties to the guy who doesn't mind being a torus one second and a sphere the next.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{SpongeBob-Press-Art-e1696001639545.jpg}
+\end{figure}
+
+\vfill
+
+\begin{center}
+\textit{"\textbf{I'm ready! I'm ready! I'm ready for some non-Euclidean transformations!}" — SpongeBob SquarePants (probably)}
+\end{center}
+
+\newpage
+
+\newpage
+\newpage
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+The author would like to extend a heartfelt (and topologically invariant) thank you to the following individuals and institutions for their contributions to this inquiry:
+
+\begin{itemize}
+    \item \textbf{SpongeBob SquarePants}: This paper would quite literally have no substance without the subject's unique geometry. We thank him for his tireless service at the grill and for maintaining a constant state of optimism, which we have mathematically modeled as a topological invariant that remains unchanged regardless of how many "rips" or "deformations" occur to his person. His ability to exist as a manifold with an ever-shifting genus is a feat of nature that defies the standard laws of Euclidean space.
+    \item \textbf{Mr. Eugene H. Krabs}: For providing the primary research facility and for only charging a nominal fee for the air breathed by the research team during data collection. His relentless pursuit of the "accumulated penny" provided a perfect real-world metaphor for the limit points of our manifold study.
+    \item \textbf{Squidward Q. Tentacles}: For his unintentional but vital contribution to the study of spectral geometry. Although his clarinet performance was physically painful to the observers, the resulting data on destructive interference and non-resonant frequency nodes was invaluable to the acoustics analysis in Section 6.
+    \item \textbf{The Wumbo Foundation}: For the generous grant that allowed us to purchase the high-speed underwater cameras used in the genus-fluctuation experiments.
+\end{itemize}
+
+\vspace{1.5cm}
+
+\newpage
+
+\newpage
+\section*{References}
+\addcontentsline{toc}{section}{References}
+
+\begin{enumerate}
+    \item \textbf{Hatcher, A. (2002).} \textit{Algebraic Topology}. Cambridge University Press. (The definitive real-world guide to the singular homology used to analyze the subject’s porous nature).
+    
+    \item \textbf{Hillenburg, S. (1999).} \textit{SpongeBob SquarePants: Season 1}. [Television Series]. Nickelodeon. (Primary field observations for Section 1 and Section 8).
+    
+    \item \textbf{Milnor, J. W. (1963).} \textit{Morse Theory}. Princeton University Press. (The real-world mathematical framework required to identify the critical points of the Krabby Patty manifold).
+    
+    \item \textbf{Munkres, J. R. (2000).} \textit{Topology}. Prentice Hall, Second Edition. (Used to verify the continuity of SpongeBob's trousers prior to the rupture discussed in Lemma 8.1).
+    
+    \item \textbf{Nash, J. (1951).} \textit{Non-Cooperative Games}. Annals of Mathematics. (Cited in Section 4 to explain the sub-optimal Nash Equilibrium found in the Krusty Krab queueing system).
+    
+    \item \textbf{Star, P. (2012).} \textit{Is Mayonnaise a Manifold? An Inquiry into Condiment Topology}. In: \textit{SpongeBob SquarePants}, Season 2, Episode 15b.
+    
+    \item \textbf{Tu, L. W. (2011).} \textit{An Introduction to Manifolds}. Springer Graduate Texts in Mathematics. (The primary real-world source for the transition maps and atlases explored in Section 9).
+\end{enumerate}
+
+\vfill
+
+\begin{center}
+    \textit{"The inner machinations of my mind are an enigma... and likely non-orientable."} \\
+    --- \textbf{P. Star}
+\end{center}
+
+\end{document}
