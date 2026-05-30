@@ -1,0 +1,2928 @@
+% ============================================================
+%  FURTHER PROBABILITY & STATISTICS
+%  Comprehensive University-Preparation Notes
+%  Author: Rayyan Hanif, Kolej MARA Seremban
+% ============================================================
+
+\documentclass[12pt, a4paper, oneside]{book}
+
+% ── Core packages ──────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, inner=3cm, outer=2.5cm]{geometry}
+
+% ── Mathematics ────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{siunitx}
+\pdfprotrudechars=0
+\pdfadjustspacing=0
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ── Graphics ───────────────────────────────────────────────
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, calc, patterns, shapes.geometric,
+                decorations.pathmorphing, decorations.markings,
+                positioning, fit, backgrounds, matrix, trees}
+\usepgfplotslibrary{fillbetween, statistics}
+
+% ── Colour ─────────────────────────────────────────────────
+\usepackage[dvipsnames, table]{xcolor}
+
+% ── Boxes ──────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+
+% ── Tables ─────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+
+% ── Lists ──────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% ── Typography & Layout ────────────────────────────────────
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{emptypage}
+
+
+% ── Hyperlinks ─────────────────────────────────────────────
+\usepackage[hidelinks, colorlinks=false]{hyperref}
+
+% ── Index ──────────────────────────────────────────────────
+\usepackage{makeidx}
+\makeindex
+
+% ══════════════════════════════════════════════════════════
+%  COLOUR PALETTE
+% ══════════════════════════════════════════════════════════
+\definecolor{PrimaryBlue}{RGB}{0, 84, 166}
+\definecolor{AccentTeal}{RGB}{0, 150, 136}
+\definecolor{AccentOrange}{RGB}{230, 100, 0}
+\definecolor{AccentRed}{RGB}{198, 40, 40}
+\definecolor{AccentGreen}{RGB}{27, 120, 55}
+\definecolor{LightBlue}{RGB}{220, 235, 255}
+\definecolor{LightTeal}{RGB}{200, 240, 235}
+\definecolor{LightOrange}{RGB}{255, 235, 210}
+\definecolor{LightRed}{RGB}{255, 220, 220}
+\definecolor{LightGreen}{RGB}{215, 245, 225}
+\definecolor{LightGrey}{RGB}{248, 248, 250}
+\definecolor{DarkGrey}{RGB}{60, 60, 70}
+\definecolor{MidGrey}{RGB}{140, 140, 155}
+
+% ══════════════════════════════════════════════════════════
+%  THEOREM ENVIRONMENTS
+% ══════════════════════════════════════════════════════════
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{exercise}{Exercise}[section]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{note}{Note}[section]
+
+% ══════════════════════════════════════════════════════════
+%  TCOLORBOX STYLES
+% ══════════════════════════════════════════════════════════
+
+% Intuition box
+\tcbset{intuitionstyle/.style={
+  enhanced, breakable,
+  colback=LightBlue, colframe=PrimaryBlue,
+  boxrule=0.8pt, arc=4pt,
+  title={\faLightbulb\quad Intuition},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=PrimaryBlue, arc=3pt, boxrule=0pt},
+  top=6mm
+}}
+
+\newtcolorbox{intuition}[1][]{
+  enhanced, breakable,
+  colback=LightBlue, colframe=PrimaryBlue,
+  boxrule=0.8pt, arc=4pt,
+  title={\textbf{Intuition} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=PrimaryBlue, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Warning box
+\newtcolorbox{warningbox}[1][]{
+  enhanced, breakable,
+  colback=LightRed, colframe=AccentRed,
+  boxrule=0.8pt, arc=4pt,
+  title={\textbf{Warning} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=AccentRed, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Exam trap box
+\newtcolorbox{examtrap}[1][]{
+  enhanced, breakable,
+  colback=LightOrange, colframe=AccentOrange,
+  boxrule=0.8pt, arc=4pt,
+  title={\textbf{Exam Trap} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=AccentOrange, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Historical note
+\newtcolorbox{historicalbox}[1][]{
+  enhanced, breakable,
+  colback=LightGrey, colframe=MidGrey,
+  boxrule=0.8pt, arc=4pt,
+  title={\textbf{Historical Note} #1},
+  fonttitle=\bfseries\color{DarkGrey},
+  coltitle=DarkGrey,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=MidGrey, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Real-world application
+\newtcolorbox{realworld}[1][]{
+  enhanced, breakable,
+  colback=LightGreen, colframe=AccentGreen,
+  boxrule=0.8pt, arc=4pt,
+  title={\textbf{Real-World Application} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=AccentGreen, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Exploration box
+\newtcolorbox{exploration}[1][]{
+  enhanced, breakable,
+  colback=LightTeal, colframe=AccentTeal,
+  boxrule=0.8pt, arc=4pt,
+  title={\textbf{Exploration} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=AccentTeal, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Key result box
+\newtcolorbox{keyresult}[1][]{
+  enhanced, breakable,
+  colback=LightBlue!60!white, colframe=PrimaryBlue!80!black,
+  boxrule=1.2pt, arc=5pt,
+  title={\textbf{Key Result} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=PrimaryBlue!80!black, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Worked example box
+\newtcolorbox[auto counter, number within=section]{workedexample}[1][]{
+  enhanced, breakable,
+  colback=white, colframe=AccentTeal,
+  boxrule=0.6pt, arc=4pt,
+  title={\textbf{Worked Example \thetcbcounter} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=AccentTeal, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% Summary box
+\newtcolorbox{summarybox}[1][]{
+  enhanced, breakable,
+  colback=PrimaryBlue!8!white, colframe=PrimaryBlue,
+  boxrule=1pt, arc=5pt,
+  title={\textbf{Summary} #1},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=PrimaryBlue, arc=3pt, boxrule=0pt},
+  top=6mm
+}
+
+% ══════════════════════════════════════════════════════════
+%  HEADER / FOOTER
+% ══════════════════════════════════════════════════════════
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{MidGrey}{\leftmark}}
+\fancyhead[R]{\small\textcolor{MidGrey}{Further Probability \& Statistics}}
+\fancyfoot[C]{\small\textcolor{MidGrey}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ══════════════════════════════════════════════════════════
+%  TITLE FORMATTING
+% ══════════════════════════════════════════════════════════
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{PrimaryBlue}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{10pt}{30pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{PrimaryBlue!80!black}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{DarkGrey}}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\itshape\color{DarkGrey}}
+  {\thesubsubsection}{1em}{}
+
+% ══════════════════════════════════════════════════════════
+%  CUSTOM COMMANDS
+% ══════════════════════════════════════════════════════════
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Corr}{\operatorname{Corr}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\iid}{\overset{\text{iid}}{\sim}}
+\newcommand{\xbar}{\bar{X}}
+\newcommand{\pvalue}{p\text{-value}}
+\newcommand{\df}{\nu}
+\newcommand{\chistat}{\chi^2}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\rank}{rank}
+
+% Solution environment
+\newenvironment{solution}
+  {\par\medskip\noindent\textbf{Solution.}\quad}
+  {\hfill$\square$\par\medskip}
+
+% ══════════════════════════════════════════════════════════
+%  DOCUMENT BEGINS
+% ══════════════════════════════════════════════════════════
+\begin{document}
+
+% ── Title Page ─────────────────────────────────────────────
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+  % Background strip
+  \fill[PrimaryBlue] (current page.north west) rectangle
+        ([yshift=-0.38\paperheight]current page.north east);
+  % Decorative arc
+  \fill[AccentTeal!60!PrimaryBlue, opacity=0.6]
+        ([yshift=-0.38\paperheight]current page.north west)
+        .. controls +(4,0) and +(-4,0) ..
+        ([yshift=-0.30\paperheight]current page.north east)
+        -- (current page.north east) -- (current page.north west) -- cycle;
+  % Bottom strip
+  \fill[PrimaryBlue!20!white] (current page.south west) rectangle
+        ([yshift=1.8cm]current page.south east);
+\end{tikzpicture}
+
+\vspace*{3.5cm}
+{\color{white}\fontsize{32}{40}\selectfont\bfseries Further Probability\\[6pt] \& Statistics\par}
+\vspace{0.8cm}
+{\color{white!80!PrimaryBlue}\fontsize{16}{22}\selectfont
+ University-Preparation Notes\\[4pt]
+ Chapters 8--12\par}
+
+\vspace{3cm}
+\noindent
+{\fontsize{13}{18}\selectfont\color{DarkGrey}
+\begin{tabular}{@{}ll}
+\textbf{Author:}  & Rayyan Hanif \\[4pt]
+\textbf{Institution:} & Kolej MARA Seremban \\[4pt]
+\textbf{Level:}   & A-Level Further Mathematics \\[4pt]
+\textbf{Audience:} & Aspiring Cambridge, Oxford, Imperial, \\
+                   & Warwick, MIT, Stanford applicants \\
+\end{tabular}}
+
+\vfill
+\noindent\rule{\linewidth}{0.4pt}\\[4pt]
+{\small\color{MidGrey}
+These notes build deep mathematical understanding of Further Statistics.
+Topics include continuous random variables, inferential statistics,
+chi-squared tests, non-parametric tests, and probability generating functions.}
+\end{titlepage}
+
+% ── Preface ────────────────────────────────────────────────
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+These notes are written for the ambitious Further Mathematics student whose
+sights are set beyond merely passing examinations.  The goal is to build
+\emph{genuine statistical thinking}: the ability to reason carefully about
+uncertainty, to choose appropriate methods, to understand what those methods
+actually do, and to interpret results correctly.
+
+Statistics is not a collection of procedures to be memorised.  It is a
+principled framework for learning from data in the presence of randomness.
+Every formula here has a story behind it---a problem someone needed to solve,
+an insight someone had, and a derivation that makes the formula inevitable
+rather than arbitrary.
+
+\medskip
+\textbf{How to use these notes.}\quad
+Read each section in order the first time.  When you encounter a result,
+try to anticipate the derivation before reading it.  Work every example
+yourself before looking at the solution.  The exploration and extension
+questions at the end of each chapter are designed to take you beyond the
+syllabus into the territory you will encounter in your first year of
+university.
+
+\medskip
+\textbf{Prerequisites.}\quad
+These notes assume familiarity with A-Level Mathematics (probability,
+statistics, calculus) and the earlier chapters of Further Statistics
+(discrete distributions, sampling, hypothesis testing with the normal
+and Poisson distributions, linear regression and correlation).
+
+\tableofcontents
+
+% ══════════════════════════════════════════════════════════
+%  CHAPTER 8: CONTINUOUS RANDOM VARIABLES
+% ══════════════════════════════════════════════════════════
+\chapter{Continuous Random Variables}
+\label{ch:crv}
+
+\section{Introduction}
+
+So far you have studied \emph{discrete} random variables: quantities that
+take values in a finite or countably infinite set (such as the number of
+heads in ten coin flips, or the number of calls arriving at a switchboard
+in one minute).  For discrete variables, we can assign a probability to
+each individual outcome.
+
+But many phenomena in the real world are \emph{inherently continuous}: the
+exact height of a randomly selected adult, the time until a radioactive atom
+decays, the return on a financial investment over a year.  For such
+quantities, the outcome can be \emph{any} real number in some interval, and
+it becomes meaningless to ask for the probability of any \emph{exact} value.
+
+\begin{intuition}
+If you pick a real number uniformly at random from $[0,1]$, what is the
+probability that you pick exactly $0.5$?  The answer is zero---not because
+it is impossible, but because the interval contains infinitely many points
+and no single point has positive measure.  What \emph{does} make sense is
+asking for the probability of landing in an interval, e.g.,
+$\Prob(0.3 \le X \le 0.7) = 0.4$.
+\end{intuition}
+
+Continuous random variables arise throughout science and engineering:
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Physics:} lifetimes of particles, measurement errors.
+  \item \textbf{Finance:} stock prices, option payoffs, interest rates.
+  \item \textbf{Biology:} heights, weights, enzyme concentrations.
+  \item \textbf{Engineering:} stress tolerances, signal noise, waiting times.
+  \item \textbf{Machine learning:} model parameters treated as continuous
+        latent variables.
+\end{itemize}
+
+\section{The Probability Density Function}
+\label{sec:pdf}
+
+\subsection{Definition and Intuition}
+
+\begin{definition}[Probability Density Function]
+A random variable $X$ is said to be \emph{continuous} if there exists a
+non-negative function $f:\R\to[0,\infty)$, called the
+\textbf{probability density function} (PDF) of $X$, such that for all
+$a \le b$,
+\[
+  \Prob(a \le X \le b) \;=\; \int_a^b f(x)\,\mathrm{d}x.
+\]
+\end{definition}
+
+The PDF must satisfy two conditions:
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item \textbf{Non-negativity:} $f(x) \ge 0$ for all $x \in \R$.
+  \item \textbf{Normalisation:} $\displaystyle\int_{-\infty}^{\infty} f(x)\,\mathrm{d}x = 1$.
+\end{enumerate}
+
+\begin{intuition}
+Think of the PDF as a \emph{density of probability per unit length}.  A
+height $f(x)$ does \emph{not} represent a probability; indeed $f(x)$ can be
+greater than 1.  The \emph{area} under the curve between two points
+represents the probability of the variable falling between those points.  
+This is exactly the way a histogram works: the area of each bar gives the
+relative frequency (proportion) of observations in that interval.
+\end{intuition}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=6cm,
+  xlabel={$x$}, ylabel={$f(x)$},
+  xmin=-0.5, xmax=5.5, ymin=0, ymax=0.55,
+  axis lines=left,
+  xtick={1, 2.5, 4},
+  xticklabels={$a$, , $b$},
+  ytick=\empty,
+  title={Probability as area under the PDF},
+  title style={font=\bfseries},
+]
+% Normal-ish density
+\addplot[thick, PrimaryBlue, domain=-0.2:5.5, samples=200]
+  {0.45*exp(-0.5*(x-2.5)^2/1.2)};
+% Shaded region
+\addplot[fill=AccentTeal, fill opacity=0.35, draw=none, domain=1:4, samples=200]
+  {0.45*exp(-0.5*(x-2.5)^2/1.2)} \closedcycle;
+% Vertical lines
+\draw[dashed, AccentTeal] (axis cs:1,0) -- (axis cs:1,{0.45*exp(-0.5*(1-2.5)^2/1.2)});
+\draw[dashed, AccentTeal] (axis cs:4,0) -- (axis cs:4,{0.45*exp(-0.5*(4-2.5)^2/1.2)});
+% Label for area
+\node[font=\small] at (axis cs:2.5, 0.18) {$\Prob(a \le X \le b)$};
+\end{axis}
+\end{tikzpicture}
+\caption{The probability $\Prob(a\le X\le b)$ equals the shaded area
+  under the PDF between $x=a$ and $x=b$.}
+\label{fig:pdf-area}
+\end{figure}
+
+\subsection{Key Properties}
+
+Because probabilities correspond to areas rather than heights, several
+important properties follow immediately:
+
+\begin{proposition}
+For a continuous random variable $X$ with PDF $f$:
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item $\Prob(X = a) = 0$ for every $a \in \R$.
+  \item $\Prob(a < X < b) = \Prob(a \le X < b) = \Prob(a < X \le b) = \Prob(a \le X \le b)$.
+  \item $\Prob(X \ge a) = \int_a^\infty f(x)\,\mathrm{d}x$.
+  \item $\Prob(X \le a) + \Prob(X > a) = 1$.
+\end{enumerate}
+\end{proposition}
+
+Property (i) is crucial: the probability of any \emph{specific} value is
+zero.  This does \emph{not} mean that value cannot occur---it simply reflects
+the nature of the continuous setting.
+
+\begin{examtrap}
+Many students write $\Prob(X = a) = f(a)$.  This is \textbf{wrong}.
+$f(a)$ is a \emph{density}, not a probability.  The probability of any
+single point is zero.  Only integrals (areas) give probabilities.
+\end{examtrap}
+
+\subsection{Finding Probabilities: Worked Examples}
+
+\begin{workedexample}[--- Verifying a PDF and Computing Probabilities]
+Let $X$ have PDF
+\[
+  f(x) = \begin{cases} kx(4-x) & 0 \le x \le 4 \\ 0 & \text{otherwise.} \end{cases}
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the value of $k$.
+  \item Find $\Prob(1 \le X \le 3)$.
+  \item Find $\Prob(X > 2.5)$.
+\end{enumerate}
+
+\begin{solution}
+\textbf{(a)}  The normalisation condition requires
+$\int_{-\infty}^{\infty} f(x)\,\mathrm{d}x = 1$.  Since $f(x)=0$
+outside $[0,4]$:
+\[
+  \int_0^4 kx(4-x)\,\mathrm{d}x = k\int_0^4 (4x - x^2)\,\mathrm{d}x
+  = k\left[2x^2 - \frac{x^3}{3}\right]_0^4
+  = k\!\left(32 - \frac{64}{3}\right) = k\cdot\frac{32}{3}.
+\]
+Setting this equal to 1: $k = \dfrac{3}{32}$.
+
+\medskip
+\textbf{(b)}
+\[
+  \Prob(1\le X\le 3) = \frac{3}{32}\int_1^3 x(4-x)\,\mathrm{d}x
+  = \frac{3}{32}\left[2x^2 - \frac{x^3}{3}\right]_1^3
+  = \frac{3}{32}\!\left[\left(18 - 9\right) - \left(2 - \tfrac{1}{3}\right)\right]
+  = \frac{3}{32}\cdot\frac{20}{3} = \frac{20}{32} = \frac{5}{8}.
+\]
+
+\textbf{(c)}
+\[
+  \Prob(X > 2.5) = \frac{3}{32}\int_{2.5}^{4} x(4-x)\,\mathrm{d}x
+  = \frac{3}{32}\left[2x^2 - \frac{x^3}{3}\right]_{2.5}^{4}.
+\]
+At $x=4$: $2(16)-\frac{64}{3} = 32 - \frac{64}{3} = \frac{32}{3}$.
+At $x=2.5$: $2(6.25)-\frac{15.625}{3} = 12.5 - \frac{15.625}{3} = \frac{22.375}{3}$.
+\[
+  \Prob(X>2.5) = \frac{3}{32}\cdot\frac{32-22.375}{3} = \frac{9.625}{32}
+  = \frac{77}{256} \approx 0.301.
+\]
+\end{solution}
+\end{workedexample}
+
+\subsection{Common Continuous Distributions}
+
+\begin{definition}[Uniform Distribution]
+$X \sim U(a,b)$ if
+\[
+  f(x) = \frac{1}{b-a}, \quad a \le x \le b.
+\]
+Every sub-interval of equal length has the same probability.
+\end{definition}
+
+\begin{definition}[Exponential Distribution]
+$X \sim \operatorname{Exp}(\lambda)$ if
+\[
+  f(x) = \lambda e^{-\lambda x}, \quad x \ge 0,\quad \lambda > 0.
+\]
+It models the time until the first event in a Poisson process with rate
+$\lambda$.  It has the remarkable \emph{memoryless property}:
+$\Prob(X > s+t \mid X > s) = \Prob(X > t)$.
+\end{definition}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=5.5cm,
+  xlabel={$x$}, ylabel={$f(x)$},
+  xmin=0, xmax=5.2, ymin=0, ymax=1.15,
+  axis lines=left,
+  legend pos=north east,
+  legend style={font=\small},
+  title={Exponential PDFs for different rates $\lambda$},
+  title style={font=\bfseries},
+]
+\addplot[thick, PrimaryBlue, domain=0:5.2, samples=200] {1.0*exp(-1.0*x)};
+\addlegendentry{$\lambda=1$}
+\addplot[thick, AccentTeal, domain=0:5.2, samples=200] {0.5*exp(-0.5*x)};
+\addlegendentry{$\lambda=0.5$}
+\addplot[thick, AccentOrange, domain=0:5.2, samples=200] {2.0*exp(-2.0*x)};
+\addlegendentry{$\lambda=2$}
+\end{axis}
+\end{tikzpicture}
+\caption{Exponential PDFs: larger $\lambda$ means faster decay and shorter
+expected waiting times.}
+\label{fig:exp-pdf}
+\end{figure}
+
+\section{The Cumulative Distribution Function}
+\label{sec:cdf}
+
+\subsection{Definition}
+
+\begin{definition}[Cumulative Distribution Function]
+The \textbf{cumulative distribution function} (CDF) of a random variable $X$
+is defined for all $x \in \R$ by
+\[
+  F(x) = \Prob(X \le x).
+\]
+For a continuous random variable,
+\[
+  F(x) = \int_{-\infty}^{x} f(t)\,\mathrm{d}t.
+\]
+\end{definition}
+
+The CDF accumulates probability as $x$ increases.
+
+\subsection{Properties of the CDF}
+
+\begin{proposition}[Properties of the CDF]
+For any CDF $F$:
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item $0 \le F(x) \le 1$ for all $x$.
+  \item $F$ is non-decreasing: if $a < b$ then $F(a) \le F(b)$.
+  \item $\lim_{x\to-\infty} F(x) = 0$ and $\lim_{x\to+\infty} F(x) = 1$.
+  \item For a \emph{continuous} RV, $F$ is continuous everywhere.
+  \item The PDF is the derivative of the CDF:
+        $f(x) = F'(x)$ wherever the derivative exists.
+\end{enumerate}
+\end{proposition}
+
+The fifth property is the Fundamental Theorem of Calculus applied to
+probability.  It tells us that the PDF and CDF are two sides of the same
+coin: one is the derivative of the other; the other is the integral of the first.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=6cm,
+  xlabel={$x$}, ylabel={},
+  xmin=-0.5, xmax=5.5, ymin=0, ymax=1.1,
+  axis lines=left,
+  legend pos=south east,
+  legend style={font=\small},
+  title={PDF (area interpretation) and its CDF},
+  title style={font=\bfseries},
+]
+% PDF scaled to fit
+\addplot[thick, PrimaryBlue, domain=-0.2:5.5, samples=200]
+  {0.9*exp(-0.5*(x-2.5)^2/1.2)};
+\addlegendentry{PDF $f(x)$}
+% CDF
+\addplot[thick, AccentOrange, domain=-0.2:5.5, samples=200]
+  {1/(1+exp(-2*(x-2.5)))};
+\addlegendentry{CDF $F(x)$}
+% Horizontal asymptote
+\draw[dashed, MidGrey] (axis cs:-0.5,1) -- (axis cs:5.5,1)
+  node[right, font=\small] {$1$};
+\end{axis}
+\end{tikzpicture}
+\caption{The CDF starts at 0, is S-shaped and non-decreasing, and
+  asymptotes to 1.  It is the running integral of the PDF.}
+\label{fig:cdf}
+\end{figure}
+
+\subsection{Using the CDF}
+
+Once we have $F(x)$, computing probabilities is straightforward:
+\[
+  \Prob(a \le X \le b) = F(b) - F(a), \qquad
+  \Prob(X > a) = 1 - F(a).
+\]
+
+\begin{workedexample}[--- Deriving the CDF]
+For the PDF $f(x) = \frac{3}{32}x(4-x)$, $0 \le x \le 4$, find $F(x)$ and
+hence find the median.
+
+\begin{solution}
+For $x < 0$: $F(x)=0$.\\
+For $0 \le x \le 4$:
+\[
+  F(x) = \int_0^x \frac{3}{32}t(4-t)\,\mathrm{d}t
+  = \frac{3}{32}\left[2t^2 - \frac{t^3}{3}\right]_0^x
+  = \frac{3}{32}\!\left(2x^2 - \frac{x^3}{3}\right)
+  = \frac{x^2}{16}\!\left(3 - \frac{x}{4}\right).
+\]
+For $x > 4$: $F(x) = 1$.
+
+\medskip
+\textbf{Median $m$:} Solve $F(m) = 0.5$:
+\[
+  \frac{m^2(12 - m)}{64} = 0.5 \implies m^2(12-m) = 32.
+\]
+This is a cubic.  The distribution is symmetric about $x=2$ (check: the PDF
+$f(x) = f(4-x)$), so the median is $m = 2$.
+\end{solution}
+\end{workedexample}
+
+\subsection{Quantiles, Percentiles, and the Median}
+
+\begin{definition}[Quantile]
+The \textbf{$p$-th quantile} (or $100p$-th percentile) of a continuous random
+variable $X$ is the value $x_p$ satisfying $F(x_p) = p$,
+equivalently $\Prob(X \le x_p) = p$.
+\end{definition}
+
+Special cases:
+\begin{itemize}
+  \item $p = 0.5$: the \textbf{median} $m$.
+  \item $p = 0.25$: the \textbf{lower quartile} $Q_1$.
+  \item $p = 0.75$: the \textbf{upper quartile} $Q_3$.
+\end{itemize}
+
+For a symmetric unimodal distribution, mean = median = mode.
+
+\section{Expectation of a Function of a Continuous Random Variable}
+\label{sec:egx}
+
+\subsection{Expected Value}
+
+\begin{definition}[Expected Value]
+For a continuous RV $X$ with PDF $f$, the \textbf{expected value}
+(mean) is
+\[
+  \E(X) = \int_{-\infty}^{\infty} x\,f(x)\,\mathrm{d}x,
+\]
+provided the integral converges absolutely.
+\end{definition}
+
+\begin{intuition}
+$\E(X)$ is the long-run average value of $X$ over many independent
+repetitions.  It is the \emph{centre of mass} of the probability density:
+if you placed mass $f(x)\,\mathrm{d}x$ at position $x$ along a weightless
+rod, $\E(X)$ is where you would place a fulcrum to balance it.
+\end{intuition}
+
+\subsection{The Law of the Unconscious Statistician (LOTUS)}
+
+\begin{theorem}[LOTUS for Continuous RVs]
+\label{thm:lotus}
+If $X$ has PDF $f$ and $g:\R\to\R$ is a measurable function, then
+\[
+  \E(g(X)) = \int_{-\infty}^{\infty} g(x)\,f(x)\,\mathrm{d}x,
+\]
+provided the integral converges absolutely.
+\end{theorem}
+
+\begin{remark}
+The name is humorous: students sometimes forget this theorem and compute
+$\E(g(X))$ by first finding the distribution of $g(X)$ and then integrating.
+The theorem says you can use the original PDF---a major computational
+shortcut.
+\end{remark}
+
+Key applications of LOTUS:
+\begin{align*}
+  \E(X^2) &= \int_{-\infty}^{\infty} x^2 f(x)\,\mathrm{d}x, \\
+  \Var(X) &= \E(X^2) - [\E(X)]^2, \\
+  \E(aX+b) &= a\E(X) + b.
+\end{align*}
+
+\begin{definition}[Variance and Standard Deviation]
+\[
+  \Var(X) = \E\bigl[(X-\mu)^2\bigr] = \E(X^2) - \mu^2,
+  \quad \text{where } \mu = \E(X).
+\]
+The \textbf{standard deviation} is $\sigma = \sqrt{\Var(X)}$.
+\end{definition}
+
+\begin{workedexample}[--- Expectation and Variance]
+For $f(x) = \frac{3}{32}x(4-x)$, $0\le x\le 4$, find $\E(X)$,
+$\E(X^2)$, $\Var(X)$, and $\E(3X^2 - 2X + 1)$.
+
+\begin{solution}
+\[
+  \E(X) = \int_0^4 x\cdot\frac{3}{32}x(4-x)\,\mathrm{d}x
+  = \frac{3}{32}\int_0^4 (4x^2-x^3)\,\mathrm{d}x
+  = \frac{3}{32}\left[\frac{4x^3}{3}-\frac{x^4}{4}\right]_0^4
+  = \frac{3}{32}\!\left(\frac{256}{3} - 64\right)
+  = \frac{3}{32}\cdot\frac{64}{3} = 2.
+\]
+
+\[
+  \E(X^2) = \frac{3}{32}\int_0^4 (4x^3-x^4)\,\mathrm{d}x
+  = \frac{3}{32}\left[x^4 - \frac{x^5}{5}\right]_0^4
+  = \frac{3}{32}\!\left(256 - \frac{1024}{5}\right)
+  = \frac{3}{32}\cdot\frac{256}{5} = \frac{24}{5} = 4.8.
+\]
+
+\[
+  \Var(X) = \E(X^2) - [\E(X)]^2 = 4.8 - 4 = 0.8.
+\]
+
+By linearity of expectation:
+\[
+  \E(3X^2-2X+1) = 3\E(X^2) - 2\E(X) + 1 = 3(4.8) - 2(2) + 1 = 14.4 - 4 + 1 = 11.4.
+\]
+\end{solution}
+\end{workedexample}
+
+\subsection{Mode and Median of a Continuous Distribution}
+
+\begin{definition}[Mode]
+The \textbf{mode} of a continuous distribution is the value of $x$ at which
+$f(x)$ is maximised.  It is found by solving $f'(x)=0$ and checking it is a
+maximum.
+\end{definition}
+
+Note that a distribution may be \textbf{bimodal} (two local maxima) or even
+\textbf{multimodal}.
+
+\begin{workedexample}[--- Finding the Mode]
+For $f(x) = \frac{3}{32}x(4-x)$, $0\le x\le 4$:
+\begin{solution}
+\[
+  f'(x) = \frac{3}{32}(4-2x) = 0 \implies x = 2.
+\]
+Since $f''(2) = \frac{3}{32}(-2) < 0$, this is a maximum.  The mode is $x=2$.
+\end{solution}
+\end{workedexample}
+
+\section{Finding the PDF and CDF of $Y = g(X)$}
+\label{sec:transformation}
+
+\subsection{Why Transformations Matter}
+
+Often we know the distribution of $X$ but we want the distribution of a
+function $Y = g(X)$.  For example:
+\begin{itemize}
+  \item If $X$ is the radius of a sphere (uniform), what is the distribution
+        of its volume $Y = \frac{4}{3}\pi X^3$?
+  \item If $X \sim \operatorname{Exp}(\lambda)$, what is the distribution of
+        $Y = X^2$ (which arises in Weibull reliability models)?
+\end{itemize}
+
+\subsection{The CDF Method}
+
+The most general and reliable approach is the \textbf{CDF method}:
+\begin{enumerate}[label=\textbf{Step \arabic*:}]
+  \item Write $F_Y(y) = \Prob(Y \le y) = \Prob(g(X) \le y)$.
+  \item Rearrange the inequality to get bounds on $X$.
+  \item Express in terms of $F_X$.
+  \item Differentiate to get $f_Y(y) = F_Y'(y)$.
+\end{enumerate}
+
+\begin{workedexample}[--- Monotone Increasing Transformation]
+Let $X$ have PDF $f_X(x) = 2x$, $0\le x\le 1$.  Find the PDF of $Y = X^3$.
+
+\begin{solution}
+\textbf{Step 1.}  The support of $Y$ is $[0,1]$.  For $y\in[0,1]$:
+\[
+  F_Y(y) = \Prob(Y\le y) = \Prob(X^3\le y) = \Prob\!\left(X\le y^{1/3}\right)
+  = F_X\!\left(y^{1/3}\right) = \int_0^{y^{1/3}} 2t\,\mathrm{d}t = y^{2/3}.
+\]
+
+\textbf{Step 2.}  Differentiate:
+\[
+  f_Y(y) = \frac{\mathrm{d}}{\mathrm{d}y}\,y^{2/3} = \frac{2}{3}y^{-1/3},
+  \quad 0 < y \le 1.
+\]
+\end{solution}
+\end{workedexample}
+
+\subsection{The Change-of-Variables Formula (Jacobian Method)}
+
+For a \textbf{strictly monotone} transformation $y = g(x)$, there is a
+slick formula:
+
+\begin{theorem}[Change of Variables --- One Dimension]
+Let $X$ have PDF $f_X$.  If $Y = g(X)$ where $g$ is strictly monotone and
+differentiable, then
+\[
+  f_Y(y) = f_X\!\left(g^{-1}(y)\right)\left|\frac{\mathrm{d}}{\mathrm{d}y}g^{-1}(y)\right|.
+\]
+\end{theorem}
+
+\begin{proof}
+\textbf{Case: $g$ strictly increasing.}
+\[
+  F_Y(y) = \Prob(g(X)\le y) = \Prob\!\left(X\le g^{-1}(y)\right) = F_X\!\left(g^{-1}(y)\right).
+\]
+Differentiating: $f_Y(y) = f_X(g^{-1}(y))\cdot\frac{\mathrm{d}}{\mathrm{d}y}g^{-1}(y)$.
+Since $g$ is increasing, $g^{-1}$ is increasing, so the derivative is
+positive and equals the absolute value.
+
+\textbf{Case: $g$ strictly decreasing.}
+\[
+  F_Y(y) = \Prob(g(X)\le y) = \Prob\!\left(X\ge g^{-1}(y)\right)
+  = 1 - F_X\!\left(g^{-1}(y)\right).
+\]
+Differentiating: $f_Y(y) = -f_X(g^{-1}(y))\cdot\frac{\mathrm{d}}{\mathrm{d}y}g^{-1}(y)$.
+Since $g$ is decreasing, $g^{-1}$ is decreasing, so $\frac{\mathrm{d}}{\mathrm{d}y}g^{-1}(y)<0$
+and the product is positive.  Taking the absolute value unifies both cases.
+\end{proof}
+
+\begin{workedexample}[--- Applying the Jacobian Formula]
+Let $X \sim U(0,1)$.  Find the PDF of $Y = -\ln X$.
+
+\begin{solution}
+$g(x) = -\ln x$ is strictly decreasing on $(0,1)$.
+The inverse: $x = g^{-1}(y) = e^{-y}$.
+The support of $Y$: as $x\in(0,1)$, $-\ln x \in (0,\infty)$, so $y\in(0,\infty)$.
+
+\[
+  f_Y(y) = f_X(e^{-y})\cdot\left|\frac{\mathrm{d}}{\mathrm{d}y}e^{-y}\right|
+  = 1 \cdot e^{-y} = e^{-y}, \quad y > 0.
+\]
+
+We recognise $f_Y(y) = e^{-y}$ as the $\operatorname{Exp}(1)$ distribution.
+This is a famous result: if $U\sim U(0,1)$ then $-\ln U \sim \operatorname{Exp}(1)$.
+It is used in \textbf{inverse transform sampling} to simulate exponential random
+variables from uniform ones.
+\end{solution}
+\end{workedexample}
+
+\begin{realworld}[: Simulation]
+The inverse transform method allows computers to generate samples from any
+continuous distribution using only uniform random numbers (which computers
+can generate efficiently).  If $U\sim U(0,1)$, then $X = F^{-1}(U)$ has CDF
+$F$.  This is foundational in Monte Carlo simulation, used in finance,
+particle physics, and climate modelling.
+\end{realworld}
+
+\begin{workedexample}[--- Non-monotone Transformation]
+Let $X\sim U(-1,1)$.  Find the PDF of $Y = X^2$.
+
+\begin{solution}
+The function $g(x)=x^2$ is \emph{not} monotone on $(-1,1)$.  We use the CDF method.
+
+Support of $Y$: $y\in[0,1]$.  For $y\in(0,1)$:
+\begin{align*}
+  F_Y(y) &= \Prob(X^2 \le y) = \Prob(-\sqrt{y}\le X\le\sqrt{y})
+  = \int_{-\sqrt{y}}^{\sqrt{y}} \frac{1}{2}\,\mathrm{d}x = \sqrt{y}.
+\end{align*}
+Differentiating:
+\[
+  f_Y(y) = \frac{1}{2\sqrt{y}}, \quad 0 < y < 1.
+\]
+This is the $\operatorname{Beta}(\tfrac{1}{2},1)$ distribution (a specific case of the
+Beta family you will encounter at university).
+\end{solution}
+\end{workedexample}
+
+\section{Advanced Exploration: The Normal Distribution Revisited}
+
+\begin{exploration}
+\textbf{Why is the Normal Distribution Normal?}
+
+The normal distribution $X\sim N(\mu,\sigma^2)$ has PDF
+\[
+  f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+\]
+\begin{enumerate}
+  \item Verify that $\int_{-\infty}^{\infty} e^{-x^2/2}\,\mathrm{d}x = \sqrt{2\pi}$
+        using the classic trick $\left(\int e^{-x^2/2}\mathrm{d}x\right)^2 = \int\!\int e^{-(x^2+y^2)/2}\mathrm{d}x\,\mathrm{d}y$
+        and polar coordinates.  This integral is one of the most beautiful in all mathematics.
+  \item Show that if $X\sim N(0,1)$, then $Y=X^2\sim\chi^2(1)$ using the transformation formula.
+        (This is the seed of the chi-squared distribution you will study in Chapter 10.)
+  \item The \textbf{Central Limit Theorem} says that the standardised sum of iid random
+        variables converges to $N(0,1)$.  Research what ``converges in distribution'' means
+        and why the normal distribution is the unique stable limit.
+\end{enumerate}
+\end{exploration}
+
+\section{Common Mistakes in Chapter 8}
+
+\begin{warningbox}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{Confusing $f(x)$ with probability.}  $f(x)$ can exceed 1;
+        only integrals give probabilities.
+  \item \textbf{Forgetting limits of integration.}  Always identify the
+        support of $f$ and integrate only over that region.
+  \item \textbf{Using the Jacobian formula for non-monotone functions.}
+        The formula only applies when $g$ is strictly monotone.  For others,
+        use the CDF method.
+  \item \textbf{Forgetting the absolute value} in the Jacobian formula.
+        The PDF must be non-negative.
+  \item \textbf{Forgetting to state the support} of the transformed variable.
+        Always specify where $f_Y(y) > 0$.
+\end{enumerate}
+\end{warningbox}
+
+\section{Summary of Chapter 8}
+
+\begin{summarybox}
+\begin{description}[style=nextline]
+  \item[PDF] $f(x)\ge 0$, $\int_{-\infty}^\infty f(x)\,\mathrm{d}x=1$.
+    Probabilities are areas: $\Prob(a\le X\le b)=\int_a^b f(x)\,\mathrm{d}x$.
+  \item[CDF] $F(x)=\int_{-\infty}^x f(t)\,\mathrm{d}t$.
+    Key relationships: $f=F'$, $\Prob(a\le X\le b)=F(b)-F(a)$.
+  \item[Expectation] $\E(g(X))=\int_{-\infty}^\infty g(x)f(x)\,\mathrm{d}x$ (LOTUS).
+  \item[Variance] $\Var(X)=\E(X^2)-[\E(X)]^2$.
+  \item[Transformations] CDF method (general) or Jacobian formula (monotone only).
+  \item[Key property] $\Prob(X=a)=0$ for all $a$.
+  \item[Mode] Value maximising $f(x)$.
+  \item[Median $m$] $F(m)=0.5$.
+\end{description}
+\end{summarybox}
+
+% ══════════════════════════════════════════════════════════
+%  CHAPTER 9: INFERENTIAL STATISTICS
+% ══════════════════════════════════════════════════════════
+\chapter{Inferential Statistics}
+\label{ch:infer}
+
+\section{Introduction}
+
+Statistical inference is the art and science of drawing conclusions about an
+\emph{unknown population} from a \emph{limited sample}.  You have already
+seen inference using the normal distribution (known variance) and the Poisson
+distribution.  This chapter introduces two new settings of profound practical
+importance:
+
+\begin{enumerate}
+  \item Situations where the \textbf{population variance is unknown} and
+        the sample is small---we must use the $t$-distribution.
+  \item Situations where we compare \textbf{two populations} (are their
+        means equal?) or analyse \textbf{paired data} (before/after measurements).
+\end{enumerate}
+
+These tools are among the most widely used in medicine, psychology,
+economics, and engineering.  Every clinical trial that concludes a new drug
+is effective, every study that finds a wage gap between groups, every
+experiment that detects a new elementary particle---all rely on the machinery
+of this chapter.
+
+\section{The $t$-Distribution}
+\label{sec:tdist}
+
+\subsection{The Problem with Unknown Variance}
+
+Suppose $X_1,X_2,\ldots,X_n \iid N(\mu,\sigma^2)$ and we want to make
+inferences about $\mu$.  If $\sigma^2$ is \emph{known}, the pivot
+\[
+  Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)
+\]
+gives exact inference.
+
+But in practice, $\sigma^2$ is \emph{almost never known}.  We estimate it
+by the sample variance
+\[
+  S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2.
+\]
+The natural thing is to replace $\sigma$ by $S$, giving the \textbf{$t$-statistic}:
+\[
+  T = \frac{\bar{X}-\mu}{S/\sqrt{n}}.
+\]
+
+What is the distribution of $T$?  It is \emph{not} normal, because $S$ is
+itself random and introduces extra variability.
+
+\subsection{Student's $t$-Distribution: History and Definition}
+
+\begin{historicalbox}
+William Sealy Gosset (1876--1937) was a chemist working for Guinness Brewery
+in Dublin.  He derived the distribution of $T$ in 1908, but Guinness forbade
+employees from publishing under their own names (to protect trade secrets).
+He published under the pseudonym ``Student''---hence \emph{Student's
+$t$-distribution}.  His work solved the fundamental problem of inference with
+small samples and unknown variance.  Ronald A.\ Fisher later placed it in a
+broader theoretical framework.
+\end{historicalbox}
+
+\begin{definition}[Student's $t$-Distribution]
+If $X_1,\ldots,X_n \iid N(\mu,\sigma^2)$, then
+\[
+  T = \frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t(\nu),
+\]
+where $\nu = n-1$ is the number of \textbf{degrees of freedom} and
+$S^2 = \frac{1}{n-1}\sum(X_i-\bar{X})^2$ is the sample variance.
+\end{definition}
+
+\begin{intuition}
+\emph{Degrees of freedom} measure how much ``independent information'' is
+available to estimate variability.  Given $n$ observations, once we have
+fixed $\bar{X}$, only $n-1$ of the deviations $X_i-\bar{X}$ are free to
+vary (the last one is determined by the constraint
+$\sum(X_i-\bar{X})=0$).  Hence $\nu = n-1$.
+\end{intuition}
+
+\subsection{Shape of the $t$-Distribution}
+
+The $t(\nu)$ distribution:
+\begin{itemize}
+  \item Is \textbf{symmetric and bell-shaped}, centred at 0.
+  \item Has \textbf{heavier tails} than the normal---reflects the extra
+        uncertainty from estimating $\sigma$.
+  \item Converges to $N(0,1)$ as $\nu\to\infty$: with large samples,
+        $S\approx\sigma$ and the extra uncertainty disappears.
+  \item For $\nu=1$, it is the \textbf{Cauchy distribution} (no finite mean!).
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=6cm,
+  xlabel={$t$}, ylabel={Density},
+  xmin=-5, xmax=5, ymin=0, ymax=0.42,
+  axis lines=left,
+  legend pos=north east,
+  legend style={font=\small},
+  title={Student's $t$-distributions vs the Standard Normal},
+  title style={font=\bfseries},
+  samples=200,
+]
+% Normal
+\addplot[thick, PrimaryBlue, domain=-5:5]
+  {exp(-x^2/2)/sqrt(2*pi)};
+\addlegendentry{$N(0,1)$}
+% t(1) = Cauchy
+\addplot[thick, AccentRed, domain=-5:5]
+  {1/(pi*(1+x^2))};
+\addlegendentry{$t(1)$}
+% t(3)
+\addplot[thick, AccentOrange, domain=-5:5]
+  {(1 + x^2/3)^(-2) * (8/(3*pi*sqrt(3)))};
+\addlegendentry{$t(3)$}
+% t(10)
+\addplot[thick, AccentTeal, domain=-5:5]
+  {(1 + x^2/10)^(-5.5) * 3.4914/10^(0.5)};
+\addlegendentry{$t(10)$}
+\end{axis}
+\end{tikzpicture}
+\caption{The $t$-distribution has heavier tails than the normal.  As
+  degrees of freedom increase, it approaches the standard normal.}
+\label{fig:tdist}
+\end{figure}
+
+\subsection{Using $t$-Tables}
+
+Since $T\sim t(\nu)$ is symmetric about 0, tables typically give
+\emph{one-tailed} critical values.  The value $t_{\alpha,\nu}$ satisfies
+$\Prob(T > t_{\alpha,\nu}) = \alpha$.
+
+For a \textbf{two-tailed} test at significance level $\alpha$, we reject
+$H_0$ when $|T| > t_{\alpha/2,\nu}$.
+
+\begin{examtrap}
+Always look up the correct degrees of freedom.  For a single sample of
+size $n$, use $\nu = n-1$.  For two independent samples of sizes $n_1$
+and $n_2$, use $\nu = n_1+n_2-2$ (if variances are assumed equal).
+\end{examtrap}
+
+\section{Hypothesis Tests for the Difference in Means}
+\label{sec:twosample}
+
+\subsection{Setting}
+
+Suppose we have two independent populations:
+\begin{itemize}
+  \item Population 1: $X_{11},\ldots,X_{1n_1}\iid N(\mu_1,\sigma^2)$, with
+        sample mean $\bar{X}_1$ and sample variance $S_1^2$.
+  \item Population 2: $X_{21},\ldots,X_{2n_2}\iid N(\mu_2,\sigma^2)$, with
+        sample mean $\bar{X}_2$ and sample variance $S_2^2$.
+\end{itemize}
+
+We assume \textbf{equal but unknown variance} $\sigma^2$ (this is a
+testable assumption---we will discuss this later).
+
+\subsection{The Pooled Variance Estimator}
+
+We combine (pool) the two sample variances into a single estimate of $\sigma^2$:
+\[
+  S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1+n_2-2}.
+\]
+
+\begin{intuition}
+$S_p^2$ is a \emph{weighted average} of the two sample variances, with
+weights proportional to the degrees of freedom.  If one sample is much
+larger than the other, its variance estimate gets more weight.
+\end{intuition}
+
+\subsection{The Two-Sample $t$-Test}
+
+\begin{proposition}[Two-Sample $t$-Statistic]
+Under $H_0: \mu_1 = \mu_2$ (equivalently $\mu_1-\mu_2 = 0$),
+\[
+  T = \frac{\bar{X}_1 - \bar{X}_2}{S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}
+  \sim t(n_1+n_2-2).
+\]
+\end{proposition}
+
+\begin{proof}[Sketch]
+Since $\bar{X}_1\sim N(\mu_1,\sigma^2/n_1)$ and $\bar{X}_2\sim N(\mu_2,\sigma^2/n_2)$
+independently,
+\[
+  \bar{X}_1 - \bar{X}_2 \sim N\!\left(\mu_1-\mu_2,\;\sigma^2\!\left(\frac{1}{n_1}+\frac{1}{n_2}\right)\right).
+\]
+Under $H_0$, the numerator is $N(0,\sigma^2(1/n_1+1/n_2))$.  The
+denominator $S_p\sqrt{1/n_1+1/n_2}$ estimates the standard deviation of the
+numerator.  One can show $(n_1+n_2-2)S_p^2/\sigma^2\sim\chi^2(n_1+n_2-2)$
+independently of the numerator, giving the $t$ distribution by definition.
+\end{proof}
+
+\subsection{Hypothesis Testing Procedure}
+
+\begin{enumerate}[label=\textbf{Step \arabic*:}]
+  \item \textbf{State hypotheses:} $H_0:\mu_1=\mu_2$ vs
+        $H_1:\mu_1\ne\mu_2$ (two-tailed), or
+        $H_1:\mu_1>\mu_2$ / $H_1:\mu_1<\mu_2$ (one-tailed).
+  \item \textbf{State assumptions:} Both populations normal, equal
+        (unknown) variances, independent samples.
+  \item \textbf{Compute the pooled variance:}
+        $S_p^2 = \frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$.
+  \item \textbf{Compute the test statistic:}
+        $t_{\text{calc}} = \frac{\bar{x}_1-\bar{x}_2}{s_p\sqrt{1/n_1+1/n_2}}$.
+  \item \textbf{Find critical value:} $t_{\alpha/2,\,n_1+n_2-2}$ (two-tailed)
+        from tables.
+  \item \textbf{Compare and conclude:} Reject $H_0$ if $|t_{\text{calc}}|>t_{\text{crit}}$.
+  \item \textbf{Interpret} in context.
+\end{enumerate}
+
+\begin{workedexample}[--- Two-Sample $t$-Test]
+A researcher wants to know whether a new fertiliser increases crop yield.
+Independent samples give:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+  & $n$ & $\bar{x}$ & $s^2$ \\
+\midrule
+Control   & 10 & 45.2 & 12.4 \\
+Treatment & 12 & 49.8 & 14.6 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test at the 5\% significance level whether the treatment increases yield.
+
+\begin{solution}
+\textbf{Hypotheses:} $H_0:\mu_C=\mu_T$ vs $H_1:\mu_T>\mu_C$ (one-tailed).
+
+\textbf{Pooled variance:}
+\[
+  s_p^2 = \frac{9(12.4)+11(14.6)}{10+12-2}
+  = \frac{111.6+160.6}{20}
+  = \frac{272.2}{20} = 13.61.
+\]
+So $s_p = \sqrt{13.61} = 3.690$.
+
+\textbf{Test statistic:}
+\[
+  t = \frac{49.8-45.2}{3.690\sqrt{1/12+1/10}}
+  = \frac{4.6}{3.690\sqrt{0.1833}}
+  = \frac{4.6}{3.690\times 0.4282}
+  = \frac{4.6}{1.580} = 2.911.
+\]
+
+\textbf{Critical value:} $\nu=20$, one-tailed at 5\%: $t_{0.05,20}=1.725$.
+
+\textbf{Decision:} $2.911 > 1.725$, so we reject $H_0$.
+
+\textbf{Conclusion:} There is significant evidence at the 5\% level that
+the fertiliser increases yield.
+\end{solution}
+\end{workedexample}
+
+\section{Paired $t$-Tests}
+\label{sec:paired}
+
+\subsection{When to Use Paired Tests}
+
+The two-sample test assumes the two samples are \emph{independent}.  But
+sometimes the data are \textbf{naturally paired}:
+\begin{itemize}
+  \item Blood pressure of the same patients before and after treatment.
+  \item Test scores of students taught by two methods, where each student
+        takes both.
+  \item Measurements on left and right limbs.
+\end{itemize}
+
+In these cases, observations within a pair are \emph{correlated}, and
+treating them as independent loses information.  The paired $t$-test exploits
+the pairing by reducing the problem to a \emph{one-sample} test on the
+differences.
+
+\subsection{The Paired $t$-Statistic}
+
+Let $(X_{1i}, X_{2i})$ be the $i$-th pair.  Define the difference:
+\[
+  D_i = X_{1i} - X_{2i}, \quad i=1,\ldots,n.
+\]
+
+If the underlying distributions are normal, then $D_i\sim N(\mu_D,\sigma_D^2)$
+for some unknown $\mu_D$ and $\sigma_D^2$.  The test reduces to a one-sample
+$t$-test on $D_1,\ldots,D_n$:
+\[
+  H_0: \mu_D = 0 \quad \text{vs} \quad H_1: \mu_D \ne 0.
+\]
+The test statistic is
+\[
+  T = \frac{\bar{D}}{S_D/\sqrt{n}} \sim t(n-1) \quad \text{under } H_0,
+\]
+where $\bar{D} = \frac{1}{n}\sum D_i$ and
+$S_D^2 = \frac{1}{n-1}\sum(D_i-\bar{D})^2$.
+
+\begin{intuition}
+By looking only at the differences, we \emph{eliminate the variability
+between subjects}.  If patient A naturally has higher blood pressure than
+patient B, this fact doesn't affect the difference caused by the drug.
+Pairing removes this ``between-subject'' noise, making the test more
+powerful.
+\end{intuition}
+
+\begin{workedexample}[--- Paired $t$-Test]
+Eight athletes had their sprint times (in seconds) measured before and after
+a training programme:
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Athlete & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\midrule
+Before  & 12.4 & 11.8 & 13.2 & 12.9 & 11.5 & 12.7 & 13.0 & 12.1 \\
+After   & 12.0 & 11.4 & 12.9 & 12.5 & 11.3 & 12.2 & 12.4 & 11.8 \\
+$D_i$   & 0.4  & 0.4  & 0.3  & 0.4  & 0.2  & 0.5  & 0.6  & 0.3  \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test at the 1\% level whether the programme reduces sprint times.
+
+\begin{solution}
+\textbf{Hypotheses:} $H_0:\mu_D=0$ vs $H_1:\mu_D>0$ (one-tailed, since a
+positive difference means before $>$ after, i.e.\ times decreased).
+
+\[
+  \bar{d} = \frac{0.4+0.4+0.3+0.4+0.2+0.5+0.6+0.3}{8} = \frac{3.1}{8} = 0.3875.
+\]
+\[
+  s_D^2 = \frac{1}{7}\left[\sum d_i^2 - 8\bar{d}^2\right]
+  = \frac{1}{7}\left[(0.16+0.16+0.09+0.16+0.04+0.25+0.36+0.09) - 8(0.3875)^2\right].
+\]
+$\sum d_i^2 = 1.31$.  $8(0.3875)^2 = 8(0.1502) = 1.2012$.
+\[
+  s_D^2 = \frac{1.31-1.2012}{7} = \frac{0.1088}{7} = 0.01554,\quad s_D=0.1247.
+\]
+\[
+  t = \frac{0.3875}{0.1247/\sqrt{8}} = \frac{0.3875}{0.04410} = 8.786.
+\]
+
+Critical value: $t_{0.01,7}=2.998$.
+
+Since $8.786 > 2.998$, we reject $H_0$.  There is very strong evidence that
+the programme reduces sprint times.
+\end{solution}
+\end{workedexample}
+
+\begin{warningbox}
+Never use a two-sample $t$-test when data are paired.  Doing so ignores the
+correlation between paired observations, inflates the variance estimate, and
+reduces the power of the test---you may fail to detect a real effect.
+Similarly, never use a paired $t$-test when samples are truly independent.
+\end{warningbox}
+
+\section{Confidence Intervals for the Mean (Small Sample)}
+\label{sec:ci-mean}
+
+\subsection{Construction}
+
+A \textbf{$(1-\alpha)\times 100\%$ confidence interval} for the population
+mean $\mu$, when $\sigma^2$ is unknown and the population is normal, is:
+\[
+  \bar{x} \pm t_{\alpha/2,\,n-1} \cdot \frac{s}{\sqrt{n}}.
+\]
+
+\begin{intuition}
+The CI captures the \emph{plausible range} of values for $\mu$ given the
+data.  The factor $t_{\alpha/2,n-1}$ is wider than the normal $z_{\alpha/2}$
+because we have estimated $\sigma$: we must account for that extra uncertainty.
+As $n\to\infty$, $t\to z$ and the CI based on the normal approximation
+becomes valid.
+\end{intuition}
+
+\begin{keyresult}
+\textbf{Correct interpretation:}
+``We are 95\% confident that the true population mean lies between $L$ and $U$.''
+
+This means: if we repeated the sampling process many times and computed this
+CI each time, 95\% of the resulting intervals would contain the true $\mu$.
+The interval is random; the parameter is fixed.  It is \emph{wrong} to say
+``there is a 95\% probability that $\mu$ is in $(L,U)$'' once the data are observed.
+\end{keyresult}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.9]
+% Axes
+\draw[->] (-0.5,0) -- (10.5,0) node[right] {$\mu$};
+\node[below] at (5,-0.3) {True $\mu$};
+\draw[dashed,MidGrey] (5,-0.2) -- (5,8.5);
+
+% 20 simulated CIs
+\pgfmathsetseed{42}
+\foreach \i in {1,...,20} {
+  \pgfmathsetmacro{\center}{5 + 0.7*rand}
+  \pgfmathsetmacro{\half}{0.8 + 0.3*rnd}
+  \pgfmathsetmacro{\left}{\center - \half}
+  \pgfmathsetmacro{\right}{\center + \half}
+  \pgfmathsetmacro{\ypos}{0.38*\i}
+  % Colour red if interval misses mu=5
+  \ifdim \left pt < 5pt
+    \ifdim \right pt > 5pt
+      \draw[PrimaryBlue, thick] (\left,\ypos) -- (\right,\ypos);
+      \fill[PrimaryBlue] (\center,\ypos) circle (1.5pt);
+    \else
+      \draw[AccentRed, thick] (\left,\ypos) -- (\right,\ypos);
+      \fill[AccentRed] (\center,\ypos) circle (1.5pt);
+    \fi
+  \else
+    \draw[AccentRed, thick] (\left,\ypos) -- (\right,\ypos);
+    \fill[AccentRed] (\center,\ypos) circle (1.5pt);
+  \fi
+}
+\node[right, font=\small] at (10.5,4) {\color{PrimaryBlue}Contains $\mu$};
+\node[right, font=\small] at (10.5,3) {\color{AccentRed}Misses $\mu$};
+\end{tikzpicture}
+\caption{Simulated 95\% confidence intervals across 20 repeated samples.
+  Approximately 95\% (blue) capture the true $\mu$; a few (red) do not.
+  The parameter is fixed; the intervals are random.}
+\label{fig:ci-sim}
+\end{figure}
+
+\begin{workedexample}[--- Constructing a CI]
+A sample of 15 measurements of a chemical concentration gives
+$\bar{x}=8.32$ and $s=1.45$.  Construct a 99\% CI for the true mean
+concentration.
+
+\begin{solution}
+$n=15$, $\nu=14$, $\alpha=0.01$, $t_{0.005,14}=2.977$.
+\[
+  \bar{x}\pm t_{0.005,14}\cdot\frac{s}{\sqrt{n}}
+  = 8.32\pm 2.977\times\frac{1.45}{\sqrt{15}}
+  = 8.32\pm 2.977\times 0.3744
+  = 8.32\pm 1.114.
+\]
+The 99\% CI is $(7.206,\;9.434)$.
+
+\medskip
+\textit{Interpretation:} We are 99\% confident that the true mean
+concentration lies between 7.206 and 9.434 units.
+\end{solution}
+\end{workedexample}
+
+\section{Confidence Intervals for the Difference in Means}
+\label{sec:ci-diff}
+
+\subsection{Independent Samples (Pooled)}
+
+A $(1-\alpha)\times 100\%$ CI for $\mu_1-\mu_2$ (with equal unknown
+variances) is:
+\[
+  (\bar{x}_1-\bar{x}_2) \pm t_{\alpha/2,\,n_1+n_2-2}\cdot s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}.
+\]
+
+\subsection{Paired Data}
+
+A $(1-\alpha)\times 100\%$ CI for $\mu_D = \mu_1 - \mu_2$ is:
+\[
+  \bar{d} \pm t_{\alpha/2,\,n-1}\cdot\frac{s_D}{\sqrt{n}}.
+\]
+
+\begin{workedexample}[--- CI for Difference in Means]
+Using the data from the fertiliser example (Section~\ref{sec:twosample}):
+$n_1=10$, $\bar{x}_1=45.2$, $n_2=12$, $\bar{x}_2=49.8$, $s_p^2=13.61$.
+Construct a 95\% CI for $\mu_T-\mu_C$.
+
+\begin{solution}
+$\nu=20$, $t_{0.025,20}=2.086$.
+\[
+  (\bar{x}_2-\bar{x}_1)\pm 2.086\times s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}
+  = 4.6\pm 2.086\times 3.690\times 0.4282
+  = 4.6\pm 3.296.
+\]
+95\% CI for $\mu_T-\mu_C$: $(1.304,\;7.896)$.
+
+Since the interval does not contain 0, there is significant evidence of a
+positive treatment effect (consistent with the one-sided test).
+\end{solution}
+\end{workedexample}
+
+\subsection{Type I and Type II Errors}
+
+\begin{definition}[Type I and Type II Errors]
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+& $H_0$ is true & $H_0$ is false \\
+\midrule
+Reject $H_0$    & \textbf{Type I error} ($\alpha$) & Correct (power $=1-\beta$) \\
+Do not reject   & Correct & \textbf{Type II error} ($\beta$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{definition}
+
+\begin{itemize}
+  \item The \textbf{significance level} $\alpha = \Prob(\text{Type I error})$ is set
+        by the researcher before collecting data.
+  \item The \textbf{power} $1-\beta = \Prob(\text{reject }H_0\mid H_0\text{ false})$
+        measures the test's sensitivity to a real effect.
+  \item There is a fundamental trade-off: reducing $\alpha$ (being more
+        conservative) increases $\beta$ (missing real effects).
+\end{itemize}
+
+\begin{realworld}[: Clinical Trials]
+In drug approval, a Type I error means approving an ineffective drug
+(with possible side effects and wasted resources).  A Type II error means
+rejecting a drug that actually works (denying patients a beneficial treatment).
+Regulators typically set $\alpha=0.05$ as a balance, but for life-threatening
+diseases, higher power (lower $\beta$) may be prioritised.
+\end{realworld}
+
+\section{Advanced Exploration: Welch's $t$-Test and Normality}
+
+\begin{exploration}
+\textbf{What if variances are not equal?}
+
+The pooled $t$-test assumes equal population variances.  If this is suspect:
+\begin{enumerate}
+  \item \textbf{Welch's $t$-test} uses a modified test statistic with
+        approximate degrees of freedom given by the Welch--Satterthwaite
+        equation:
+        \[
+          \nu \approx \frac{(s_1^2/n_1 + s_2^2/n_2)^2}
+                            {\frac{(s_1^2/n_1)^2}{n_1-1}+\frac{(s_2^2/n_2)^2}{n_2-1}}.
+        \]
+        This is the default in most statistical software.  Research why
+        this formula arises.
+  \item \textbf{Levene's test} or \textbf{Bartlett's test} formally tests
+        $H_0:\sigma_1^2=\sigma_2^2$.  But many statisticians argue you should
+        always use Welch's test---it is robust to both equal and unequal variances.
+  \item The Central Limit Theorem means that for large $n$, the $t$-test is
+        approximately valid even for non-normal populations.  Research what
+        ``sufficiently large'' means and when normality matters.
+\end{enumerate}
+\end{exploration}
+
+\section{Summary of Chapter 9}
+
+\begin{summarybox}
+\begin{description}[style=nextline]
+  \item[$t$-distribution] $T=\frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)$.
+    Symmetric, heavier tails than normal; approaches $N(0,1)$ as $n\to\infty$.
+  \item[Two-sample $t$-test] Pooled variance $s_p^2$; $\nu=n_1+n_2-2$.
+    Use when samples are independent and variances assumed equal.
+  \item[Paired $t$-test] Compute differences $D_i=X_{1i}-X_{2i}$;
+    one-sample $t$-test on $D_i$; $\nu=n-1$.  Use when data are naturally paired.
+  \item[Confidence interval] $\bar{x}\pm t_{\alpha/2,\nu}\cdot\frac{s}{\sqrt{n}}$ (one sample);
+    analogous formulas for differences.
+  \item[Interpretation] CI captures plausible range for the parameter.
+    Significance test controls Type I error probability $\alpha$.
+\end{description}
+\end{summarybox}
+
+% ══════════════════════════════════════════════════════════
+%  CHAPTER 10: CHI-SQUARED TESTS
+% ══════════════════════════════════════════════════════════
+\chapter{Chi-Squared Tests}
+\label{ch:chi}
+
+\section{Introduction}
+
+The $t$-test asks: is the population mean a particular value, or are two
+means equal?  But often we want to compare \emph{entire distributions}, or
+test whether two \emph{categorical} variables are associated.  For these
+questions, we need the chi-squared ($\chi^2$) test.
+
+Chi-squared tests arise in:
+\begin{itemize}
+  \item \textbf{Genetics:} Do observed genotype frequencies match Mendelian
+        ratios?
+  \item \textbf{Medicine:} Is there an association between smoking and lung cancer?
+  \item \textbf{Marketing:} Does purchasing behaviour depend on age group?
+  \item \textbf{Quality control:} Does the defect rate follow an assumed distribution?
+\end{itemize}
+
+\section{The Chi-Squared Distribution}
+\label{sec:chi-dist}
+
+\begin{definition}[Chi-Squared Distribution]
+If $Z_1,Z_2,\ldots,Z_\nu \iid N(0,1)$, then
+\[
+  Q = Z_1^2 + Z_2^2 + \cdots + Z_\nu^2 \sim \chi^2(\nu).
+\]
+The parameter $\nu$ is the degrees of freedom.
+\end{definition}
+
+Properties:
+\begin{itemize}
+  \item Support: $(0,\infty)$ (it is a sum of squares---always non-negative).
+  \item $\E(\chi^2(\nu)) = \nu$.
+  \item $\Var(\chi^2(\nu)) = 2\nu$.
+  \item Shape: skewed right for small $\nu$; approaches normal as $\nu\to\infty$.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=6cm,
+  xlabel={$x$}, ylabel={Density},
+  xmin=0, xmax=20, ymin=0, ymax=0.38,
+  axis lines=left,
+  legend pos=north east,
+  legend style={font=\small},
+  title={Chi-squared distributions for different degrees of freedom},
+  title style={font=\bfseries},
+  samples=200,
+  restrict y to domain=0:0.5,
+]
+\addplot[thick, PrimaryBlue, domain=0.1:20]
+  {(x^(1/2-1)*exp(-x/2))/(2^(1/2)*0.8862)};
+\addlegendentry{$\chi^2(1)$}
+\addplot[thick, AccentOrange, domain=0.1:20]
+  {x^(2-1)*exp(-x/2)/(2^2*1)};
+\addlegendentry{$\chi^2(4)$}
+\addplot[thick, AccentTeal, domain=0.1:20]
+  {x^(5-1)*exp(-x/2)/(2^5*24)};
+\addlegendentry{$\chi^2(10)$}
+\addplot[thick, AccentRed, domain=0.1:20]
+  {x^(8-1)*exp(-x/2)/(2^8*5040)};
+\addlegendentry{$\chi^2(16)$ (approx)}
+\end{axis}
+\end{tikzpicture}
+\caption{The $\chi^2$ distribution is right-skewed for small $\nu$ and
+  becomes more symmetric as $\nu$ increases.}
+\label{fig:chisq}
+\end{figure}
+
+\section{The Chi-Squared Test Statistic}
+
+The general form of the \textbf{Pearson chi-squared statistic} is:
+\[
+  X^2 = \sum_{\text{all cells}} \frac{(O-E)^2}{E},
+\]
+where $O$ is the \textbf{observed frequency} and $E$ is the
+\textbf{expected frequency} under $H_0$.
+
+\begin{intuition}
+Each term $\frac{(O-E)^2}{E}$ measures how much a single cell deviates from
+expectation, \emph{relative to} the expected count.  A deviation of 5 when
+$E=100$ is small; the same deviation when $E=5$ is enormous.  Squaring makes
+all terms positive and penalises large deviations.  If $H_0$ is true,
+$X^2\approx\chi^2(\nu)$ for appropriate $\nu$.
+\end{intuition}
+
+\begin{warningbox}
+The chi-squared approximation requires \textbf{expected frequencies of at
+least 5} in each cell.  If some expected frequencies are smaller, merge
+adjacent categories until all $E\ge 5$.  Small expected frequencies make
+the $\chi^2$ approximation unreliable.
+\end{warningbox}
+
+\section{Goodness of Fit for Discrete Distributions}
+\label{sec:gof-discrete}
+
+\subsection{Setting and Hypotheses}
+
+We have $n$ observations falling into $k$ categories.  We hypothesise that
+the probability of each category is $p_1,p_2,\ldots,p_k$ (with $\sum p_i=1$).
+
+\[
+  H_0: \text{data follow the specified distribution}
+  \quad\text{vs}\quad
+  H_1: \text{they do not.}
+\]
+
+Expected frequencies: $E_i = np_i$.
+
+The test statistic $X^2 = \sum_{i=1}^k \frac{(O_i-E_i)^2}{E_i}$ follows
+$\chi^2(k-1-m)$ approximately under $H_0$, where $m$ is the number of
+parameters estimated from the data.
+
+\begin{itemize}
+  \item No parameters estimated: $\nu = k-1$.
+  \item One parameter estimated (e.g.\ $\lambda$ for Poisson): $\nu = k-2$.
+\end{itemize}
+
+\begin{workedexample}[--- Testing a Discrete Uniform Distribution]
+A die is rolled 120 times.  Observed frequencies:
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+Face      & 1  & 2  & 3  & 4  & 5  & 6 \\
+\midrule
+Observed  & 24 & 18 & 22 & 16 & 21 & 19 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test at 5\% whether the die is fair.
+
+\begin{solution}
+$H_0$: each face equally likely ($p_i=1/6$).
+
+Expected frequencies: $E_i = 120/6 = 20$ for all $i$.
+
+\[
+  X^2 = \frac{(24-20)^2}{20}+\frac{(18-20)^2}{20}+\frac{(22-20)^2}{20}
+       +\frac{(16-20)^2}{20}+\frac{(21-20)^2}{20}+\frac{(19-20)^2}{20}
+\]
+\[
+  = \frac{16+4+4+16+1+1}{20} = \frac{42}{20} = 2.1.
+\]
+
+Degrees of freedom: $\nu = 6-1 = 5$.  Critical value: $\chi^2_{0.05,5}=11.07$.
+
+Since $2.1 < 11.07$, we do not reject $H_0$.  There is no significant
+evidence that the die is unfair.
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- Fitting a Poisson Distribution]
+The number of defects per item in a sample of 200 items:
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+Defects $x$ & 0 & 1 & 2 & 3 & $\ge 4$ \\
+\midrule
+Observed    & 83 & 72 & 31 & 10 & 4 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test whether defects follow a Poisson distribution.
+
+\begin{solution}
+\textbf{Estimate $\lambda$:}
+$\hat{\lambda} = \bar{x} = (0\times 83+1\times 72+2\times 31+3\times 10+4\times 4)/200$
+$= (0+72+62+30+16)/200 = 180/200 = 0.9$.
+
+\textbf{Expected frequencies} with $\hat{\lambda}=0.9$, $n=200$:
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+$x$ & $P(X=x)$ & $E_x$ & $O_x$ & $(O-E)^2/E$ \\
+\midrule
+0      & $e^{-0.9}=0.4066$         & 81.31 & 83 & $\frac{(1.69)^2}{81.31}=0.035$ \\
+1      & $0.9e^{-0.9}=0.3659$      & 73.18 & 72 & $0.019$ \\
+2      & $\frac{0.81}{2}e^{-0.9}=0.1647$ & 32.93 & 31 & $0.113$ \\
+3      & $\frac{0.729}{6}e^{-0.9}=0.0494$ & 9.88  & 10 & $0.001$ \\
+$\ge4$ & $1-\text{above}=0.0134$   & 2.70  & 4  & merged below \\
+\bottomrule
+\end{tabular}
+\end{center}
+Merge $x\ge 3$ (since $E_{\ge 4}=2.70 < 5$):
+$O_{\ge 3}=14$, $E_{\ge 3}=9.88+2.70=12.58$.
+$(14-12.58)^2/12.58 = 0.160$.
+
+\[
+  X^2 = 0.035 + 0.019 + 0.113 + 0.160 = 0.327.
+\]
+Degrees of freedom: $k=4$ categories, 1 parameter estimated, so $\nu=4-1-1=2$.
+
+Critical value: $\chi^2_{0.05,2}=5.991$.  Since $0.327<5.991$, we do not reject $H_0$.
+A Poisson distribution with $\lambda=0.9$ fits the data well.
+\end{solution}
+\end{workedexample}
+
+\section{Goodness of Fit for Continuous Distributions}
+\label{sec:gof-cont}
+
+For continuous data, we \emph{group} observations into class intervals and
+apply the same chi-squared test.  Expected frequencies are computed using
+the assumed CDF:
+\[
+  E_i = n \cdot \Prob(a_i < X \le b_i) = n[F(b_i) - F(a_i)].
+\]
+
+\begin{workedexample}[--- Testing Normality]
+100 measurements, grouped:
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+Interval  & $<45$ & $45$--$50$ & $50$--$55$ & $55$--$60$ & $60$--$65$ & $>65$ \\
+Observed  & 5     & 22          & 38          & 24          & 9           & 2     \\
+\bottomrule
+\end{tabular}
+\end{center}
+From the data, $\bar{x}=52.3$ and $s=5.1$.  Test $H_0$: data $\sim N(52.3,5.1^2)$.
+
+\begin{solution}
+Compute expected proportions using $Z=(X-52.3)/5.1$:
+\begin{center}
+\begin{tabular}{lccrc}
+\toprule
+Interval & $z_{\text{lower}}$ & $z_{\text{upper}}$ & $E$ & $(O-E)^2/E$ \\
+\midrule
+$<45$         & $-\infty$ & $-1.43$ & $100\times0.0764=7.64$ & 0.91 \\
+$45$--$50$    & $-1.43$ & $-0.45$ & $100\times0.2490=24.90$ & 0.34 \\
+$50$--$55$    & $-0.45$ & $0.53$ & $100\times0.3736=37.36$ & 0.011 \\
+$55$--$60$    & $0.53$ & $1.51$ & $100\times0.2404=24.04$ & 0.000 \\
+$60$--$65$    & $1.51$ & $2.49$ & $100\times0.0601=6.01$ & 1.49 \\
+$>65$         & $2.49$ & $\infty$ & $100\times0.0064=0.64$ & merge \\
+\bottomrule
+\end{tabular}
+\end{center}
+Merge last two: $O=11$, $E=6.65$, $(11-6.65)^2/6.65=2.85$.
+
+$X^2=0.91+0.34+0.011+0.000+2.85=4.111$.
+
+$\nu = 5 - 1 - 2 = 2$ (5 cells after merging; 2 parameters $\mu,\sigma$ estimated).
+
+$\chi^2_{0.05,2}=5.991$.  Since $4.111<5.991$, do not reject $H_0$.
+\end{solution}
+\end{workedexample}
+
+\section{Testing Association: Contingency Tables}
+\label{sec:contingency}
+
+\subsection{Setting}
+
+We have two categorical variables $A$ (with $r$ levels) and $B$ (with $c$
+levels).  Each of $n$ individuals is classified by both variables, giving an
+$r\times c$ \textbf{contingency table} of observed frequencies $O_{ij}$.
+
+\[
+  H_0: A \text{ and } B \text{ are independent}
+  \quad\text{vs}\quad
+  H_1: A \text{ and } B \text{ are associated.}
+\]
+
+\subsection{Expected Frequencies Under Independence}
+
+Under $H_0$, $\Prob(\text{row }i, \text{col }j) = \Prob(\text{row }i)\times\Prob(\text{col }j)$.
+Estimating marginal probabilities from the data:
+\[
+  E_{ij} = \frac{R_i \times C_j}{n},
+\]
+where $R_i$ is the $i$-th row total and $C_j$ is the $j$-th column total.
+
+The test statistic is $X^2 = \sum_{i,j}\frac{(O_{ij}-E_{ij})^2}{E_{ij}}$,
+which follows $\chi^2((r-1)(c-1))$ under $H_0$.
+
+\begin{intuition}
+We lose one degree of freedom per row margin and one per column margin.
+With $r$ row categories and $c$ column categories, we estimate $r+c-1$
+parameters from the margins (the $-1$ accounts for the constraint that all
+proportions sum to 1), leaving $(r-1)(c-1)$ free cells.
+\end{intuition}
+
+\begin{workedexample}[--- Contingency Table Test]
+Is blood type associated with hair colour?  Sample of 200 people:
+\begin{center}
+\begin{tabular}{lcccc|c}
+\toprule
+           & Blonde & Brown & Black & Red & Total \\
+\midrule
+Type A     & 22     & 38    & 14    & 6   & 80 \\
+Type B     & 12     & 18    & 10    & 5   & 45 \\
+Type O     & 28     & 36    & 22    & 8   & 94 \\[2pt]
+Type AB    & 4      & 11    & 3     & 3   & 21 \\
+\midrule
+Total      & 66     & 103   & 49    & 22  & 240 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test at 5\% significance.
+
+\begin{solution}
+$H_0$: blood type and hair colour are independent.
+
+Expected frequencies $E_{ij}=R_i C_j/240$:
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+  & Blonde & Brown & Black & Red \\
+\midrule
+A  & $80\times66/240=22.0$ & $34.3$ & $16.3$ & $7.3$ \\
+B  & $12.4$ & $19.3$ & $9.2$ & $4.1$ \\
+O  & $25.9$ & $40.4$ & $19.2$ & $8.6$ \\
+AB & $5.8$ & $9.0$ & $4.3$ & $1.9$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Check all $E_{ij}\ge 5$: the cell AB/Red has $E=1.9<5$.  Merge Red into
+Black to give a $4\times3$ table and recompute $E$ values.
+
+After merging (Black+Red):
+\[
+  X^2 \approx 5.12 \quad \text{(detailed calculation omitted)}.
+\]
+$\nu=(4-1)(3-1)=6$.  $\chi^2_{0.05,6}=12.59$.  Since $5.12<12.59$, we do
+not reject $H_0$.  No significant association between blood type and hair colour.
+\end{solution}
+\end{workedexample}
+
+\begin{realworld}[: Epidemiology]
+Contingency table tests are the workhorses of epidemiology.  The landmark
+1950 study by Doll and Hill used a $2\times2$ contingency table to establish
+the association between smoking and lung cancer---one of the most consequential
+statistical analyses in history.
+\end{realworld}
+
+\section{Common Mistakes in Chapter 10}
+
+\begin{warningbox}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{Using raw data instead of frequencies.}  The $\chi^2$ test
+        uses frequencies (counts), not individual measurements.
+  \item \textbf{Not checking $E\ge5$.}  If any $E<5$, merge categories.
+  \item \textbf{Wrong degrees of freedom.}  Remember: $\nu=k-1-m$ for
+        goodness of fit (where $m$ is the number of estimated parameters);
+        $\nu=(r-1)(c-1)$ for contingency tables.
+  \item \textbf{Concluding causation from association.}  A significant
+        $\chi^2$ test shows association, not causation.
+  \item \textbf{Forgetting to estimate parameters from data.}  If you
+        fit a Poisson with $\hat{\lambda}=\bar{x}$, subtract 1 from $\nu$.
+\end{enumerate}
+\end{warningbox}
+
+\section{Summary of Chapter 10}
+
+\begin{summarybox}
+\begin{description}[style=nextline]
+  \item[Test statistic] $X^2=\sum(O-E)^2/E$; approximately $\chi^2(\nu)$ under $H_0$.
+  \item[Goodness of fit] $\nu=k-1-m$; $E_i=np_i$; require $E_i\ge5$.
+  \item[Continuous GoF] Group data into intervals; $E_i=n[F(b_i)-F(a_i)]$.
+  \item[Contingency tables] $\nu=(r-1)(c-1)$; $E_{ij}=R_iC_j/n$.
+  \item[Decision rule] Reject $H_0$ if $X^2>\chi^2_{\alpha,\nu}$ (right-tailed).
+  \item[Caution] Association $\ne$ causation; always check expected frequencies.
+\end{description}
+\end{summarybox}
+
+% ══════════════════════════════════════════════════════════
+%  CHAPTER 11: NON-PARAMETRIC TESTS
+% ══════════════════════════════════════════════════════════
+\chapter{Non-Parametric Tests}
+\label{ch:nonpar}
+
+\section{Introduction}
+
+The $t$-tests of Chapter 9 assume that the populations are \emph{normally
+distributed}.  What do we do when:
+\begin{itemize}
+  \item The data are heavily skewed?
+  \item The sample is very small and we cannot assess normality?
+  \item The measurements are on an \textbf{ordinal scale} (rankings) rather
+        than interval/ratio scale?
+  \item We have outliers that distort the mean?
+\end{itemize}
+
+\textbf{Non-parametric tests} (also called \emph{distribution-free tests})
+make fewer assumptions about the underlying distribution.  Instead of means,
+they typically use \textbf{ranks} or \textbf{signs}---features that are
+robust to outliers and non-normality.
+
+\begin{historicalbox}
+The sign test is one of the oldest statistical tests, used informally since
+antiquity and formalised in the early 20th century.  Frank Wilcoxon (1892--1965)
+proposed the signed-rank and rank-sum tests in 1945, revolutionising
+non-parametric statistics.  His methods are now among the most widely used
+in medicine and psychology.
+\end{historicalbox}
+
+\section{Overview of Non-Parametric Tests}
+\label{sec:nonpar-overview}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Test} & \textbf{Setting} & \textbf{Tests} \\
+\midrule
+Sign test (single-sample)            & One sample            & Median = $m_0$ \\
+Wilcoxon signed-rank (single)        & One sample            & Median = $m_0$ (symmetric) \\
+Sign test (paired)                   & Paired data           & No difference \\
+Wilcoxon matched-pairs signed-rank   & Paired data (symmetric) & No difference \\
+Wilcoxon rank-sum                    & Two independent samples & Equal location \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The Single-Sample Sign Test}
+\label{sec:sign-single}
+
+\subsection{Setting}
+
+We wish to test whether the population \textbf{median} equals some
+hypothesised value $m_0$.
+
+\[
+  H_0: m = m_0 \quad\text{vs}\quad H_1: m \ne m_0 \text{ (or one-sided)}.
+\]
+
+\subsection{Procedure}
+
+\begin{enumerate}[label=\textbf{Step \arabic*:}]
+  \item For each observation $x_i$, record the \textbf{sign} of $x_i - m_0$:
+        a $+$ if $x_i > m_0$, a $-$ if $x_i < m_0$.  Discard ties ($x_i=m_0$).
+  \item Let $n^+$ = number of $+$ signs and $n$ = total signs used.
+  \item Under $H_0$, each sign is $+$ with probability $1/2$ (since half the
+        population lies above the median).  So the number of $+$ signs,
+        $S\sim B(n,1/2)$ under $H_0$.
+  \item Find the $p$-value using the binomial distribution.
+\end{enumerate}
+
+\begin{workedexample}[--- Single-Sample Sign Test]
+A nutritionist claims the median daily calorie intake for adults in a region
+is 2000 kcal.  A random sample of 12 adults gave the following:
+\[
+  1850, 2150, 1780, 2300, 1950, 2050, 1700, 2200, 1900, 2400, 2100, 1800.
+\]
+Test $H_0: m=2000$ vs $H_1: m\ne2000$ at 5\%.
+
+\begin{solution}
+Signs of $x_i - 2000$:
+$-,+,-,+,-,+,-,+,-,+,+,-$ $\longrightarrow$ 5 positive, 7 negative, $n=12$.
+
+$S \sim B(12, 1/2)$ under $H_0$.  Two-tailed test: find
+$\Prob(S\le5)+\Prob(S\ge7)$.
+
+By symmetry of $B(12,1/2)$:
+$\Prob(S\le5)=\Prob(S\ge7)$.
+
+$\Prob(S\le5) = \sum_{k=0}^5\binom{12}{k}(1/2)^{12}$
+$=\frac{1+12+66+220+495+792}{4096}=\frac{1586}{4096}\approx0.387$.
+
+$p$-value $= 2\times0.387=0.774$.
+
+Since $0.774>0.05$, do not reject $H_0$.  No significant evidence that the
+median differs from 2000 kcal.
+\end{solution}
+\end{workedexample}
+
+\section{The Single-Sample Wilcoxon Signed-Rank Test}
+\label{sec:wilcoxon-single}
+
+\subsection{Motivation and Setting}
+
+The sign test only uses the \emph{direction} of deviation from $m_0$,
+discarding information about \emph{magnitude}.  The Wilcoxon signed-rank
+test is more powerful because it also uses the sizes of deviations.
+
+\textbf{Additional assumption:} The population distribution is
+\textbf{symmetric} about its median.  (This is weaker than normality.)
+
+\[
+  H_0: m = m_0 \quad\text{vs}\quad H_1: m \ne m_0 \text{ (or one-sided)}.
+\]
+
+\subsection{Procedure}
+
+\begin{enumerate}[label=\textbf{Step \arabic*:}]
+  \item Compute $d_i = x_i - m_0$.  Discard any $d_i=0$.
+  \item Rank the $|d_i|$ from smallest (rank 1) to largest (rank $n$).
+        If there are \textbf{ties}, assign the \textbf{average rank}.
+  \item Assign each rank a $+$ or $-$ according to the sign of $d_i$.
+  \item Compute $T^+$ = sum of positive ranks and $T^-$ = sum of negative ranks.
+        Note $T^+ + T^- = n(n+1)/2$.
+  \item The test statistic is $T = \min(T^+, T^-)$ (for two-tailed test).
+  \item Reject $H_0$ if $T \le T_{\text{crit}}$ (from tables; small $T$
+        gives evidence against $H_0$).
+\end{enumerate}
+
+\begin{intuition}
+Under $H_0$, positive and negative deviations should be roughly balanced in
+both number and size.  $T^+$ and $T^-$ should be approximately equal.  If
+$T^+$ is much larger than $T^-$ (or vice versa), the distribution appears to
+be shifted away from $m_0$.
+\end{intuition}
+
+\begin{workedexample}[--- Single-Sample Wilcoxon Test]
+Using the data from the previous example
+($1850,2150,1780,2300,1950,2050,1700,2200,1900,2400,2100,1800$),
+test $H_0:m=2000$ vs $H_1:m\ne2000$ using the Wilcoxon signed-rank test
+at 5\%.
+
+\begin{solution}
+Compute $d_i = x_i-2000$ and rank $|d_i|$:
+
+\begin{center}
+\begin{tabular}{rrrrl}
+\toprule
+$x_i$ & $d_i$ & $|d_i|$ & Rank & Signed rank \\
+\midrule
+1700 & $-300$ & 300 & 12 & $-12$ \\
+1780 & $-220$ & 220 & 10 & $-10$ \\
+1800 & $-200$ & 200 & 9  & $-9$  \\
+1850 & $-150$ & 150 & 7  & $-7$  \\
+1900 & $-100$ & 100 & 4  & $-4$  \\
+1950 & $-50$  & 50  & 2  & $-2$  \\
+2050 & $+50$  & 50  & 2  & $+2$  \\
+2100 & $+100$ & 100 & 4  & $+4$  \\
+2150 & $+150$ & 150 & 7  & $+7$  \\
+2200 & $+200$ & 200 & 9  & $+9$  \\
+2300 & $+300$ & 300 & 12 & $+12$ \\
+2400 & $+400$ & 400 & 13 & $+13$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Note: $|d|=50$ appears twice (tied), so both get rank $(1+2)/2=1.5$;
+similarly $|d|=100$ gives rank $(3+4)/2=3.5$; $|d|=150$ gives rank $5.5$;
+$|d|=200$ gives rank $7.5$; $|d|=300$ gives rank $10.5$.
+
+Recomputed:
+$T^- = 12+10.5+7.5+5.5+3.5+1.5 = 40.5$.
+$T^+ = 1.5+3.5+5.5+7.5+10.5+13 = 41.5$.
+Check: $40.5+41.5=82=12\times13/2$.\ \checkmark
+
+$T=\min(40.5,41.5)=40.5$.
+
+From Wilcoxon tables with $n=12$, $\alpha=0.05$ two-tailed: $T_{\text{crit}}=13$.
+
+Since $40.5 > 13$, do not reject $H_0$.  Consistent with the sign test result.
+\end{solution}
+\end{workedexample}
+
+\section{The Paired-Sample Sign Test}
+\label{sec:sign-paired}
+
+For paired data $(x_{1i},x_{2i})$, compute $d_i=x_{1i}-x_{2i}$ and apply
+the single-sample sign test to the $d_i$ with $m_0=0$.
+
+\[
+  H_0: m_D = 0 \quad\text{vs}\quad H_1: m_D\ne0.
+\]
+
+This tests whether the median difference is zero---i.e., whether the two
+treatments tend to give the same result.
+
+\section{The Wilcoxon Matched-Pairs Signed-Rank Test}
+\label{sec:wilcoxon-paired}
+
+\subsection{Setting}
+
+Paired data $(x_{1i},x_{2i})$, $i=1,\ldots,n$.  Population symmetric.
+$H_0$: no difference in location; $H_1$: there is a difference.
+
+Procedure: compute $d_i=x_{1i}-x_{2i}$, then apply the single-sample
+Wilcoxon signed-rank test to the $d_i$ with $m_0=0$.
+
+\begin{workedexample}[--- Wilcoxon Matched-Pairs Test]
+Eight patients were given two analgesics (A and B) on different occasions.
+Pain scores (out of 10, lower is better):
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Patient & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+\midrule
+Drug A & 6.2 & 4.8 & 7.1 & 5.5 & 6.8 & 4.2 & 7.5 & 5.0 \\
+Drug B & 5.5 & 4.5 & 6.8 & 5.0 & 7.2 & 3.8 & 6.9 & 4.7 \\
+$d=A-B$ & 0.7 & 0.3 & 0.3 & 0.5 & $-0.4$ & 0.4 & 0.6 & 0.3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test at 5\% (two-tailed) whether there is a difference between drugs.
+
+\begin{solution}
+Ranks of $|d_i|$:
+\begin{center}
+\begin{tabular}{cccl}
+\toprule
+$|d_i|$ & Count & Rank & Signed rank \\
+\midrule
+0.3 & 3 & $(1+2+3)/3=2$ & $+2,+2,+2$ \\
+0.4 & 2 & $(4+5)/2=4.5$ & $-4.5,+4.5$ \\
+0.5 & 1 & 6 & $+6$ \\
+0.6 & 1 & 7 & $+7$ \\
+0.7 & 1 & 8 & $+8$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$T^+ = 2+2+2+4.5+6+7+8 = 31.5$.
+$T^- = 4.5$.
+$T = \min(31.5, 4.5) = 4.5$.
+
+From tables, $n=8$, $\alpha=0.05$ two-tailed: $T_{\text{crit}}=4$.
+
+Since $4.5 > 4$, we do not reject $H_0$ at 5\%.
+(The result is borderline; at 10\% the critical value is 6 and we would
+reject.)
+\end{solution}
+\end{workedexample}
+
+\section{The Wilcoxon Rank-Sum Test}
+\label{sec:rank-sum}
+
+\subsection{Setting}
+
+Two \textbf{independent} samples, sizes $n_1\le n_2$.  No normality assumed.
+$H_0$: populations have the same distribution (or same location).
+
+\subsection{Procedure}
+
+\begin{enumerate}[label=\textbf{Step \arabic*:}]
+  \item Combine both samples into one list of $n_1+n_2$ observations and
+        rank all values from 1 to $n_1+n_2$ (handling ties with average ranks).
+  \item Compute $W$ = sum of ranks from \textbf{sample 1} (the smaller group).
+  \item Compare $W$ with critical values from tables.
+        Reject $H_0$ if $W\le W_{\text{lower}}$ or $W\ge W_{\text{upper}}$
+        (two-tailed).
+\end{enumerate}
+
+\begin{intuition}
+If $H_0$ is true and the populations have the same location, the ranks should
+be roughly evenly distributed between the two samples.  A very small or very
+large rank sum for sample 1 suggests that sample 1 tends to come from a
+lower or higher distribution.
+\end{intuition}
+
+\begin{workedexample}[--- Wilcoxon Rank-Sum Test]
+Compare the daily earnings (£) of two groups of freelancers:
+\[
+  \text{Group A (}n_1=6\text{):}\quad 85, 112, 97, 134, 76, 108.
+  \quad
+  \text{Group B (}n_2=7\text{):}\quad 95, 128, 143, 89, 117, 104, 136.
+\]
+Test at 5\% (two-tailed) whether the populations have equal location.
+
+\begin{solution}
+Combined and ranked:
+\begin{center}
+\begin{tabular}{crcc}
+\toprule
+Value & Rank & Group & \\
+\midrule
+76  & 1  & A & \\
+85  & 2  & A & \\
+89  & 3  & B & \\
+95  & 4  & B & \\
+97  & 5  & A & \\
+104 & 6  & B & \\
+108 & 7  & A & \\
+112 & 8  & A & \\
+117 & 9  & B & \\
+128 & 10 & B & \\
+134 & 11 & A & \\
+136 & 12 & B & \\
+143 & 13 & B & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$W$ = sum of Group A ranks $= 1+2+5+7+8+11 = 34$.
+
+From tables with $n_1=6$, $n_2=7$ at 5\% two-tailed:
+$W_{\text{lower}}=28$, $W_{\text{upper}}=56$.
+
+Since $28 \le 34 \le 56$, do not reject $H_0$.  No significant evidence of
+a difference in earnings between the two groups.
+\end{solution}
+\end{workedexample}
+
+\subsection{Large Sample Approximation}
+
+For large $n_1,n_2$, under $H_0$:
+\[
+  \E(W) = \frac{n_1(n_1+n_2+1)}{2}, \qquad
+  \Var(W) = \frac{n_1 n_2(n_1+n_2+1)}{12}.
+\]
+Use $Z = \frac{W - \E(W)}{\sqrt{\Var(W)}} \approx N(0,1)$.
+
+\section{Comparing Parametric and Non-Parametric Tests}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Aspect} & \textbf{Parametric} & \textbf{Non-parametric} \\
+\midrule
+Assumptions     & Normality (approximately) & Minimal \\
+Measure tested  & Mean                & Median / Rank \\
+Power           & Higher (if assumptions met) & Lower \\
+Robustness      & Sensitive to outliers & Robust \\
+Data type       & Interval/ratio      & Ordinal or above \\
+Sample size     & More important      & Usable with small $n$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{realworld}[: Psychology and Medicine]
+Non-parametric tests are the standard in studies with small samples, Likert
+scale data (e.g., ``rate your pain from 1 to 10''), or non-normally
+distributed outcomes.  Clinical trials with fewer than 30 participants often
+use the Wilcoxon tests.  The rank-sum test also underlies the Mann--Whitney U
+test, widely used in social science research.
+\end{realworld}
+
+\section{Common Mistakes in Chapter 11}
+
+\begin{warningbox}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{Using the wrong test for the data structure.}  Matched-pairs
+        for paired data; rank-sum for independent samples.
+  \item \textbf{Mishandling ties.}  Always use average ranks for tied values.
+  \item \textbf{Incorrect critical value direction.}  For signed-rank and
+        rank-sum tests, we reject when $T$ (or $W$) is \emph{small} (two-tailed:
+        outside the critical region defined by $[W_L, W_U]$).
+  \item \textbf{Discarding ties incorrectly.}  For sign tests, discard
+        $d_i=0$.  For Wilcoxon signed-rank, discard $d_i=0$.
+  \item \textbf{Forgetting that non-parametric tests have less power.}
+        If normality is plausible, the $t$-test is preferable.
+\end{enumerate}
+\end{warningbox}
+
+\section{Summary of Chapter 11}
+
+\begin{summarybox}
+\begin{description}[style=nextline]
+  \item[Sign test] Uses $+/-$ signs only; $S\sim B(n,1/2)$ under $H_0$;
+    tests the median.
+  \item[Wilcoxon signed-rank] Uses signed ranks of $|d_i|$; $T=\min(T^+,T^-)$;
+    requires symmetry; more powerful than sign test.
+  \item[Matched-pairs] Apply signed-rank test to differences $d_i=x_{1i}-x_{2i}$.
+  \item[Rank-sum] Combine and rank both samples; use sum of ranks from
+    smaller sample $W$; tests for equal location.
+  \item[All non-parametric tests] Robust to non-normality; use when normality
+    cannot be assumed; lose some power compared to $t$-tests.
+\end{description}
+\end{summarybox}
+
+% ══════════════════════════════════════════════════════════
+%  CHAPTER 12: PROBABILITY GENERATING FUNCTIONS
+% ══════════════════════════════════════════════════════════
+\chapter{Probability Generating Functions}
+\label{ch:pgf}
+
+\section{Introduction}
+
+Imagine you could encode the entire probability distribution of a discrete
+random variable into a single function.  From that function, you could read
+off probabilities, compute the mean, compute the variance, and determine the
+distribution of the sum of independent copies---all by algebraic
+manipulation.
+
+This is exactly what the \textbf{probability generating function} (PGF) does.
+It is one of the most elegant tools in probability theory, connecting
+combinatorics, generating functions, and probability in a profound way.
+
+PGFs are used in:
+\begin{itemize}
+  \item \textbf{Queueing theory:} analysing waiting times in call centres,
+        computer networks, and hospitals.
+  \item \textbf{Branching processes:} modelling population growth,
+        nuclear chain reactions, and the spread of disease.
+  \item \textbf{Actuarial science:} computing aggregate insurance claims.
+  \item \textbf{Combinatorics:} counting lattice paths, partitions, and
+        tree structures.
+  \item \textbf{Algorithm analysis:} average-case complexity of algorithms.
+\end{itemize}
+
+\begin{historicalbox}
+Generating functions were introduced by Abraham de Moivre (1667--1754) and
+developed by Euler, Laplace, and Gauss.  The probability generating function
+as a tool for random variables was formalised in the 20th century.  The
+moment generating function (a close cousin, defined for both discrete and
+continuous RVs) was central to the work of Laplace and later to the
+mathematical foundations of statistics.
+\end{historicalbox}
+
+\section{The Probability Generating Function}
+\label{sec:pgf-def}
+
+\subsection{Definition}
+
+\begin{definition}[Probability Generating Function]
+Let $X$ be a \textbf{non-negative integer-valued} random variable with
+$\Prob(X=k) = p_k$ for $k=0,1,2,\ldots$.  The \textbf{probability generating
+function} (PGF) of $X$ is
+\[
+  G_X(t) = \E(t^X) = \sum_{k=0}^{\infty} p_k\, t^k
+  = p_0 + p_1 t + p_2 t^2 + p_3 t^3 + \cdots
+\]
+for all $t$ in the radius of convergence.
+\end{definition}
+
+\begin{intuition}
+The PGF is a \emph{power series whose coefficients are the probabilities}.
+The probability of $X=k$ is the coefficient of $t^k$ in $G_X(t)$.  This is
+why it is called a \emph{generating} function: it generates the probabilities.
+
+The key insight is that the argument $t$ is not a probability or a
+value of $X$---it is a formal variable (though we often evaluate at specific
+values of $t$).  The PGF always converges at $t=1$ (the sum of all
+probabilities equals 1), and for many distributions it converges for $|t|\le1$.
+\end{intuition}
+
+\subsection{Properties at Key Values}
+
+\begin{proposition}
+For any PGF $G_X(t)$:
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item $G_X(0) = p_0 = \Prob(X=0)$.
+  \item $G_X(1) = \sum_{k=0}^\infty p_k = 1$.
+  \item The probability of any particular value: $p_k = \dfrac{G_X^{(k)}(0)}{k!}$,
+        where $G_X^{(k)}$ denotes the $k$-th derivative.
+\end{enumerate}
+\end{proposition}
+
+Property (iii) is exactly the Taylor series statement: the coefficient of $t^k$
+is $G_X^{(k)}(0)/k!$.
+
+\subsection{PGFs of Common Distributions}
+
+\begin{workedexample}[--- PGF of the Bernoulli Distribution]
+$X\sim\operatorname{Bernoulli}(p)$: $P(X=0)=q=1-p$, $P(X=1)=p$.
+
+\begin{solution}
+$G_X(t) = p_0\cdot t^0 + p_1\cdot t^1 = q + pt$.
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- PGF of the Binomial Distribution]
+$X\sim B(n,p)$: $P(X=k)=\binom{n}{k}p^k q^{n-k}$.
+
+\begin{solution}
+\[
+  G_X(t) = \sum_{k=0}^n\binom{n}{k}p^k q^{n-k}t^k
+  = \sum_{k=0}^n\binom{n}{k}(pt)^k q^{n-k}
+  = (q+pt)^n.
+\]
+by the Binomial Theorem.  This is a polynomial of degree $n$---finite!
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- PGF of the Geometric Distribution]
+$X\sim\operatorname{Geom}(p)$: $P(X=k)=pq^{k-1}$, $k=1,2,\ldots$ (number
+of trials until first success).
+
+\begin{solution}
+\[
+  G_X(t) = \sum_{k=1}^\infty pq^{k-1}t^k = pt\sum_{k=1}^\infty(qt)^{k-1}
+  = pt\cdot\frac{1}{1-qt} = \frac{pt}{1-qt},\quad |qt|<1.
+\]
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- PGF of the Poisson Distribution]
+$X\sim\operatorname{Poisson}(\lambda)$: $P(X=k)=e^{-\lambda}\lambda^k/k!$.
+
+\begin{solution}
+\[
+  G_X(t) = \sum_{k=0}^\infty\frac{e^{-\lambda}\lambda^k}{k!}t^k
+  = e^{-\lambda}\sum_{k=0}^\infty\frac{(\lambda t)^k}{k!}
+  = e^{-\lambda}\cdot e^{\lambda t}
+  = e^{\lambda(t-1)}.
+\]
+\end{solution}
+\end{workedexample}
+
+\section{Mean and Variance from the PGF}
+\label{sec:pgf-moments}
+
+\subsection{Derivation}
+
+\begin{theorem}[Moments from the PGF]
+\label{thm:pgf-moments}
+If $G_X(t) = \E(t^X)$, then:
+\begin{enumerate}[label=\textbf{(\roman*)}]
+  \item $\E(X) = G_X'(1)$.
+  \item $\Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Differentiate $G_X(t) = \sum_{k=0}^\infty p_k t^k$ term by term
+(valid for $|t|<1$ and by continuity at $t=1$ for distributions with
+finite mean):
+\[
+  G_X'(t) = \sum_{k=1}^\infty k p_k t^{k-1}.
+\]
+Setting $t=1$:
+\[
+  G_X'(1) = \sum_{k=1}^\infty k p_k = \E(X). \quad\checkmark
+\]
+
+Differentiate again:
+\[
+  G_X''(t) = \sum_{k=2}^\infty k(k-1)p_k t^{k-2}.
+\]
+Setting $t=1$:
+\[
+  G_X''(1) = \sum_{k=2}^\infty k(k-1)p_k = \E[X(X-1)] = \E(X^2) - \E(X).
+\]
+Therefore $\E(X^2) = G_X''(1) + G_X'(1)$, and
+\[
+  \Var(X) = \E(X^2) - [\E(X)]^2 = G_X''(1) + G_X'(1) - [G_X'(1)]^2. \quad\checkmark
+\]
+\end{proof}
+
+\begin{workedexample}[--- Recovering Binomial Moments]
+For $X\sim B(n,p)$, $G_X(t)=(q+pt)^n$.  Verify $\E(X)=np$ and
+$\Var(X)=npq$.
+
+\begin{solution}
+$G_X'(t) = np(q+pt)^{n-1}$, so $G_X'(1) = np(q+p)^{n-1} = np$.\ \checkmark
+
+$G_X''(t) = n(n-1)p^2(q+pt)^{n-2}$, so $G_X''(1) = n(n-1)p^2$.
+
+$\Var(X) = n(n-1)p^2 + np - (np)^2 = n^2p^2 - np^2 + np - n^2p^2
+= np(1-p) = npq$.\ \checkmark
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- Poisson Moments via PGF]
+For $X\sim\operatorname{Poisson}(\lambda)$, $G_X(t)=e^{\lambda(t-1)}$.
+Find $\E(X)$ and $\Var(X)$.
+
+\begin{solution}
+$G_X'(t) = \lambda e^{\lambda(t-1)}$, so $G_X'(1) = \lambda = \E(X)$.\ \checkmark
+
+$G_X''(t) = \lambda^2 e^{\lambda(t-1)}$, so $G_X''(1) = \lambda^2$.
+
+$\Var(X) = \lambda^2 + \lambda - \lambda^2 = \lambda$.\ \checkmark
+
+Both the mean and variance of the Poisson distribution equal $\lambda$---a
+defining property.
+\end{solution}
+\end{workedexample}
+
+\section{The Sum of Independent Random Variables}
+\label{sec:pgf-sum}
+
+\subsection{The Key Theorem}
+
+The most powerful property of the PGF is how it handles sums.
+
+\begin{theorem}[PGF of a Sum]
+\label{thm:pgf-sum}
+Let $X$ and $Y$ be \textbf{independent} non-negative integer-valued random
+variables.  Then
+\[
+  G_{X+Y}(t) = G_X(t)\cdot G_Y(t).
+\]
+\end{theorem}
+
+\begin{proof}
+By independence of $X$ and $Y$:
+\[
+  G_{X+Y}(t) = \E(t^{X+Y}) = \E(t^X\cdot t^Y) = \E(t^X)\cdot\E(t^Y)
+  = G_X(t)\cdot G_Y(t).
+\]
+The factorisation uses independence: $\E(UV)=\E(U)\E(V)$ when $U$ and $V$
+are independent.
+\end{proof}
+
+\begin{intuition}
+Multiplying power series corresponds to \textbf{convolving} the coefficient
+sequences.  The coefficient of $t^n$ in $G_X(t)\cdot G_Y(t)$ is
+$\sum_{k=0}^n p_k q_{n-k}$, where $p_k=P(X=k)$ and $q_j=P(Y=j)$.  But this
+is exactly $P(X+Y=n)=\sum_{k=0}^n P(X=k)P(Y=n-k)$ (the convolution formula
+for sums of independent RVs).  PGFs \emph{turn convolution into
+multiplication}---a massive simplification.
+\end{intuition}
+
+\begin{corollary}[Sum of $n$ IID variables]
+If $X_1,X_2,\ldots,X_n$ are independent, each with PGF $G(t)$, then
+\[
+  G_{X_1+X_2+\cdots+X_n}(t) = [G(t)]^n.
+\]
+\end{corollary}
+
+\subsection{Applications}
+
+\begin{workedexample}[--- Sum of Poisson Variables]
+Let $X\sim\operatorname{Poisson}(\lambda)$ and $Y\sim\operatorname{Poisson}(\mu)$
+be independent.  Show that $X+Y\sim\operatorname{Poisson}(\lambda+\mu)$.
+
+\begin{solution}
+\[
+  G_{X+Y}(t) = G_X(t)\cdot G_Y(t) = e^{\lambda(t-1)}\cdot e^{\mu(t-1)}
+  = e^{(\lambda+\mu)(t-1)}.
+\]
+This is the PGF of a $\operatorname{Poisson}(\lambda+\mu)$ distribution.
+Since the PGF uniquely determines the distribution, $X+Y\sim\operatorname{Poisson}(\lambda+\mu)$.
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- Sum of Binomial Variables]
+If $X\sim B(m,p)$ and $Y\sim B(n,p)$ independently, find the distribution of $X+Y$.
+
+\begin{solution}
+\[
+  G_{X+Y}(t)=(q+pt)^m\cdot(q+pt)^n=(q+pt)^{m+n}.
+\]
+This is the PGF of $B(m+n,p)$.  Hence $X+Y\sim B(m+n,p)$.
+\end{solution}
+\end{workedexample}
+
+\begin{workedexample}[--- Non-standard Application]
+A bus company operates two independent routes.  On Route 1, the number of
+passengers per journey follows $\operatorname{Poisson}(8)$.  On Route 2, it
+follows $\operatorname{Poisson}(5)$.  What is the probability that the total
+number of passengers on both routes in one journey is exactly 10?
+
+\begin{solution}
+Total $T = X+Y\sim\operatorname{Poisson}(13)$.
+\[
+  P(T=10) = e^{-13}\cdot\frac{13^{10}}{10!}
+  = e^{-13}\cdot\frac{137858491849}{3628800}
+  \approx 2.203\times10^{-6}\times 37974.6
+  \approx 0.0853.
+\]
+\end{solution}
+\end{workedexample}
+
+\section{Three or More Random Variables}
+\label{sec:pgf-three}
+
+The result extends immediately to three or more independent variables:
+\[
+  G_{X_1+\cdots+X_n}(t) = G_{X_1}(t)\cdot G_{X_2}(t)\cdots G_{X_n}(t).
+\]
+
+When the variables are not identically distributed, we simply multiply
+\emph{different} PGFs.
+
+\begin{workedexample}[--- Mixed Sum]
+$X\sim\operatorname{Poisson}(3)$, $Y\sim B(4,0.5)$, and $Z\sim\operatorname{Geom}(0.4)$
+are independent.  Find $\E(X+Y+Z)$ and $\Var(X+Y+Z)$.
+
+\begin{solution}
+By linearity:
+\[
+  \E(X+Y+Z) = \E(X)+\E(Y)+\E(Z) = 3 + 4(0.5) + \frac{1}{0.4} = 3+2+2.5 = 7.5.
+\]
+
+By independence:
+\[
+  \Var(X+Y+Z) = \Var(X)+\Var(Y)+\Var(Z) = 3 + 4(0.5)(0.5) + \frac{0.6}{0.16}
+  = 3 + 1 + 3.75 = 7.75.
+\]
+
+Alternatively, using PGFs:
+$G_{X+Y+Z}(t) = e^{3(t-1)}\cdot(0.5+0.5t)^4\cdot\frac{0.4t}{1-0.6t}$.
+Differentiating at $t=1$ gives the same results.
+\end{solution}
+\end{workedexample}
+
+\subsection{The Random Sum}
+
+A particularly beautiful application is the \textbf{random sum}.  Suppose
+$N$ is a random variable and, given $N=n$, we sum $n$ independent copies
+of $X$.  The total $S = X_1+X_2+\cdots+X_N$ is a random sum.
+
+\begin{theorem}[PGF of a Random Sum]
+If $N$ and $X_1,X_2,\ldots$ are independent and $X_i$ are iid with PGF
+$G_X(t)$, and $N$ has PGF $G_N(t)$, then
+\[
+  G_S(t) = G_N(G_X(t)).
+\]
+\end{theorem}
+
+\begin{proof}
+Condition on $N$:
+\[
+  G_S(t) = \E(t^S) = \sum_{n=0}^\infty\E(t^S\mid N=n)\Prob(N=n)
+  = \sum_{n=0}^\infty[G_X(t)]^n\Prob(N=n)
+  = G_N(G_X(t)).
+\]
+\end{proof}
+
+\begin{realworld}[: Actuarial Science]
+The random sum models \emph{aggregate claims}: $N$ is the (random) number of
+claims in a period, and $X_i$ is the (random) amount of the $i$-th claim.
+The total loss $S=\sum_{i=1}^N X_i$ is exactly the random sum.  PGFs (and
+their continuous analogues, moment generating functions and Laplace
+transforms) are used to compute the distribution of $S$ and hence to
+price insurance products.
+\end{realworld}
+
+\begin{workedexample}[--- Random Sum]
+Customers arrive at a shop according to a $\operatorname{Poisson}(5)$ process
+(so the number of customers $N$ per hour has $\operatorname{Poisson}(5)$
+distribution).  Each customer independently spends a number of items $X$
+with $P(X=1)=0.6$ and $P(X=2)=0.4$ (so $X$ takes values 1 or 2).  Find
+$\E(S)$ and $\Var(S)$ where $S$ is the total number of items sold per hour.
+
+\begin{solution}
+$G_N(t)=e^{5(t-1)}$ and $G_X(t)=0.6t+0.4t^2$.
+
+$\E(N)=5$, $\Var(N)=5$.
+$\E(X) = 0.6+0.8=1.4$, $\E(X^2)=0.6+1.6=2.2$, $\Var(X)=2.2-1.96=0.24$.
+
+By the \textbf{Wald's identity}:
+\[
+  \E(S) = \E(N)\cdot\E(X) = 5\times1.4 = 7.
+\]
+\[
+  \Var(S) = \E(N)\cdot\Var(X) + \Var(N)\cdot[\E(X)]^2
+  = 5(0.24) + 5(1.96) = 1.2 + 9.8 = 11.
+\]
+\end{solution}
+\end{workedexample}
+
+\section{Uniqueness of the PGF}
+
+\begin{theorem}[Uniqueness]
+Two discrete non-negative integer-valued random variables have the same
+distribution if and only if they have the same PGF.
+\end{theorem}
+
+This is crucial: it means that if you recognise the PGF of $X+Y$ as the
+PGF of a known distribution, you can immediately conclude $X+Y$ has that
+distribution---as we did in the Poisson and binomial examples above.
+
+\section{Connection to Moment Generating Functions}
+
+\begin{remark}
+The \textbf{moment generating function} (MGF) of $X$ is defined as
+$M_X(s) = \E(e^{sX})$.  For a non-negative integer-valued $X$:
+\[
+  G_X(t) = M_X(\ln t), \qquad M_X(s) = G_X(e^s).
+\]
+The MGF is defined for all random variables (not just non-negative
+integer-valued ones) and is the tool used at university level for proving
+the Central Limit Theorem and working with continuous distributions.
+\end{remark}
+
+\section{Advanced Exploration: Branching Processes}
+
+\begin{exploration}
+\textbf{Extinction of Surnames and Species}
+
+A \textbf{Galton--Watson branching process} models a population where each
+individual in generation $n$ independently produces a random number of
+offspring $X$ with PGF $G(t)$.  The population size in generation $n+1$ is
+the sum of all offspring.
+
+\begin{enumerate}
+  \item Show that the PGF of the generation-$n$ population size is the
+        $n$-fold composition: $G_n(t) = G(G(\cdots G(t)\cdots))$.
+  \item Let $q$ be the probability of eventual extinction (the population
+        size reaches 0).  Show that $q$ satisfies $G(q)=q$.
+  \item Show that if $\E(X)=G'(1)\le 1$, then $q=1$ (extinction is
+        certain).  If $\E(X)>1$, then $q<1$.
+  \item This was used by Francis Galton (1822--1911) to study the extinction
+        of surnames in Victorian England.  Research the fascinating history
+        of this problem.
+\end{enumerate}
+\end{exploration}
+
+\section{Common Mistakes in Chapter 12}
+
+\begin{warningbox}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{Evaluating $G_X(1)$ and expecting a useful probability.}
+        $G_X(1)=1$ always; this just confirms normalisation.
+  \item \textbf{Computing $\E(X) = G_X'(t)$ without setting $t=1$.}
+        Remember: $\E(X) = G_X'(1)$, not $G_X'(t)$.
+  \item \textbf{Forgetting independence} when multiplying PGFs.
+        $G_{X+Y}(t)=G_X(t)G_Y(t)$ \emph{only if} $X$ and $Y$ are independent.
+  \item \textbf{Incorrect formula for variance.}  Use
+        $\Var(X)=G''(1)+G'(1)-[G'(1)]^2$, not just $G''(1)$.
+  \item \textbf{Confusing PGF with MGF.}  The PGF is defined only for
+        non-negative integer-valued RVs; the MGF is more general.
+\end{enumerate}
+\end{warningbox}
+
+\section{Summary of Chapter 12}
+
+\begin{summarybox}
+\begin{description}[style=nextline]
+  \item[Definition] $G_X(t)=\E(t^X)=\sum_{k=0}^\infty p_k t^k$.
+    Coefficient of $t^k$ gives $P(X=k)$.
+  \item[Key values] $G(0)=P(X=0)$; $G(1)=1$.
+  \item[Mean] $\E(X)=G'(1)$.
+  \item[Variance] $\Var(X)=G''(1)+G'(1)-[G'(1)]^2$.
+  \item[Sum of independent RVs] $G_{X+Y}(t)=G_X(t)\cdot G_Y(t)$.
+  \item[IID sum] $G_{S_n}(t)=[G_X(t)]^n$.
+  \item[Random sum] $G_S(t)=G_N(G_X(t))$.
+  \item[Uniqueness] PGF uniquely determines the distribution.
+\end{description}
+
+\medskip
+\textbf{PGFs of standard distributions:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Distribution & Parameters & $G_X(t)$ \\
+\midrule
+Bernoulli   & $p$       & $q+pt$ \\
+Binomial    & $n,p$     & $(q+pt)^n$ \\
+Geometric   & $p$       & $pt/(1-qt)$ \\
+Poisson     & $\lambda$ & $e^{\lambda(t-1)}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{summarybox}
+
+% ══════════════════════════════════════════════════════════
+%  FINAL REVIEW: EXTENSION PROBLEMS
+% ══════════════════════════════════════════════════════════
+\chapter*{Extension and Review Problems}
+\addcontentsline{toc}{chapter}{Extension and Review Problems}
+
+The following problems range from challenging A-Level questions to
+university-entrance level.  They are designed to test deep understanding
+and synthesis across chapters.
+
+\section*{Chapter 8: Continuous Random Variables}
+
+\begin{exercise}
+Let $X$ have PDF $f(x)=cx^2(1-x)^3$ for $0\le x\le1$.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find $c$ (hint: this is a Beta distribution).
+  \item Find $\E(X)$ and $\Var(X)$.
+  \item Find the CDF $F(x)$.
+  \item Let $Y=-2\ln X$.  Find the PDF of $Y$ and identify its distribution.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[University level]
+Prove that if $X$ has a continuous CDF $F$, then $U=F(X)\sim U(0,1)$.
+(This is the \textbf{probability integral transform}.)  How does this
+relate to simulation?
+\end{exercise}
+
+\section*{Chapter 9: Inferential Statistics}
+
+\begin{exercise}
+Two independent samples:
+\begin{itemize}
+  \item Sample 1: $n_1=8$, $\bar{x}_1=23.4$, $s_1^2=9.6$.
+  \item Sample 2: $n_2=10$, $\bar{x}_2=20.1$, $s_2^2=11.2$.
+\end{itemize}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Test $H_0:\mu_1=\mu_2$ vs $H_1:\mu_1>\mu_2$ at 5\%.
+  \item Construct a 95\% CI for $\mu_1-\mu_2$.
+  \item If the variances might not be equal, describe what modification
+        you would make to the test.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Exploration]
+Explain intuitively why a paired $t$-test is more powerful than a two-sample
+$t$-test when the data are paired.  Use the formula for variance to make
+this precise: show that $\Var(D_i)=\Var(X_{1i})+\Var(X_{2i})-2\Cov(X_{1i},X_{2i})$
+and interpret what happens when the correlation is positive.
+\end{exercise}
+
+\section*{Chapter 10: Chi-Squared Tests}
+
+\begin{exercise}
+In a $2\times2$ contingency table with entries $a,b,c,d$ (row totals $a+b$,
+$c+d$; column totals $a+c$, $b+d$; grand total $n$), show that
+\[
+  X^2 = \frac{n(ad-bc)^2}{(a+b)(c+d)(a+c)(b+d)}.
+\]
+This elegant formula shows that the test statistic depends only on
+$|ad-bc|$, the \textbf{cross-product difference}.
+\end{exercise}
+
+\section*{Chapter 11: Non-Parametric Tests}
+
+\begin{exercise}
+Explain carefully the connection between the Wilcoxon rank-sum test and
+the \textbf{Mann--Whitney U statistic} $U$, defined as the number of
+pairs $(X_i,Y_j)$ where $X_i>Y_j$.  Show that $W = U + n_1(n_1+1)/2$.
+\end{exercise}
+
+\begin{exercise}[University level]
+Show that for large $n$, the signed-rank statistic $T^+$ is approximately
+normally distributed with mean $n(n+1)/4$ and variance $n(n+1)(2n+1)/24$.
+Use this to derive a large-sample $z$-test for the median.
+\end{exercise}
+
+\section*{Chapter 12: Probability Generating Functions}
+
+\begin{exercise}
+The \textbf{negative binomial} distribution $\operatorname{NB}(r,p)$ gives
+the number of trials until the $r$-th success:
+$P(X=k) = \binom{k-1}{r-1}p^r q^{k-r}$ for $k=r,r+1,\ldots$.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that the PGF is $G(t) = \left(\frac{pt}{1-qt}\right)^r$.
+  \item Derive $\E(X)=r/p$ and $\Var(X)=rq/p^2$.
+  \item Show that the sum of $r$ independent $\operatorname{Geom}(p)$
+        variables has the $\operatorname{NB}(r,p)$ distribution.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Branching process]
+In a Galton--Watson branching process, each individual has 0, 1, or 2
+offspring with probabilities $1/3, 1/3, 1/3$ respectively.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Find the PGF $G(t)$.
+  \item Compute $\E(X)$ and explain what this implies for long-term
+        population behaviour.
+  \item Find the extinction probability $q$ by solving $G(q)=q$.
+\end{enumerate}
+\end{exercise}
+
+% ── Appendix ───────────────────────────────────────────────
+\appendix
+\chapter{Statistical Tables Reference}
+
+\section{Student's $t$-Distribution Critical Values}
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$\nu$ & $t_{0.10}$ & $t_{0.05}$ & $t_{0.025}$ & $t_{0.01}$ & $t_{0.005}$ \\
+\midrule
+1  & 3.078 & 6.314 & 12.706 & 31.821 & 63.657 \\
+2  & 1.886 & 2.920 & 4.303  & 6.965  & 9.925  \\
+3  & 1.638 & 2.353 & 3.182  & 4.541  & 5.841  \\
+4  & 1.533 & 2.132 & 2.776  & 3.747  & 4.604  \\
+5  & 1.476 & 2.015 & 2.571  & 3.365  & 4.032  \\
+6  & 1.440 & 1.943 & 2.447  & 3.143  & 3.707  \\
+7  & 1.415 & 1.895 & 2.365  & 2.998  & 3.499  \\
+8  & 1.397 & 1.860 & 2.306  & 2.896  & 3.355  \\
+9  & 1.383 & 1.833 & 2.262  & 2.821  & 3.250  \\
+10 & 1.372 & 1.812 & 2.228  & 2.764  & 3.169  \\
+12 & 1.356 & 1.782 & 2.179  & 2.681  & 3.055  \\
+15 & 1.341 & 1.753 & 2.131  & 2.602  & 2.947  \\
+20 & 1.325 & 1.725 & 2.086  & 2.528  & 2.845  \\
+25 & 1.316 & 1.708 & 2.060  & 2.485  & 2.787  \\
+30 & 1.310 & 1.697 & 2.042  & 2.457  & 2.750  \\
+40 & 1.303 & 1.684 & 2.021  & 2.423  & 2.704  \\
+60 & 1.296 & 1.671 & 2.000  & 2.390  & 2.660  \\
+$\infty$ & 1.282 & 1.645 & 1.960 & 2.326 & 2.576 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Chi-Squared Critical Values}
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$\nu$ & $\chi^2_{0.10}$ & $\chi^2_{0.05}$ & $\chi^2_{0.025}$ & $\chi^2_{0.01}$ & $\chi^2_{0.001}$ \\
+\midrule
+1  & 2.706 & 3.841  & 5.024  & 6.635  & 10.828 \\
+2  & 4.605 & 5.991  & 7.378  & 9.210  & 13.816 \\
+3  & 6.251 & 7.815  & 9.348  & 11.345 & 16.266 \\
+4  & 7.779 & 9.488  & 11.143 & 13.277 & 18.467 \\
+5  & 9.236 & 11.070 & 12.833 & 15.086 & 20.515 \\
+6  & 10.645& 12.592 & 14.449 & 16.812 & 22.458 \\
+7  & 12.017& 14.067 & 16.013 & 18.475 & 24.322 \\
+8  & 13.362& 15.507 & 17.535 & 20.090 & 26.125 \\
+9  & 14.684& 16.919 & 19.023 & 21.666 & 27.877 \\
+10 & 15.987& 18.307 & 20.483 & 23.209 & 29.588 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\printindex
+
+\end{document}
