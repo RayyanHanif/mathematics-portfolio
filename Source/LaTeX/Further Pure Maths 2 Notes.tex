@@ -1,0 +1,889 @@
+\documentclass[12pt, a4paper]{book}
+
+% ---------- Packages ----------
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\tcbuselibrary{theorems, skins, breakable}
+
+% ---------- Page Geometry ----------
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+% ---------- Header/Footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{A-Level Further Mathematics}}
+\fancyhead[LO]{\textit{\leftmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Theorem Environments ----------
+\tcbset{
+  thmstyle/.style={
+    enhanced, breakable,
+    colback=gray!5, colframe=black!60,
+    fonttitle=\bfseries, separator sign={ },
+    left=4pt, right=4pt, top=4pt, bottom=4pt,
+  },
+  defstyle/.style={
+    enhanced, breakable,
+    colback=blue!4, colframe=blue!50!black,
+    fonttitle=\bfseries,
+    left=4pt, right=4pt, top=4pt, bottom=4pt,
+  },
+  exstyle/.style={
+    enhanced, breakable,
+    colback=green!3, colframe=green!50!black,
+    fonttitle=\bfseries,
+    left=4pt, right=4pt, top=4pt, bottom=4pt,
+  },
+  keystyle/.style={
+    enhanced,
+    colback=yellow!10, colframe=orange!70!black,
+    fonttitle=\bfseries,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+  },
+}
+
+\newtcbtheorem[number within=section]{theorem}{Theorem}{thmstyle}{thm}
+\newtcbtheorem[number within=section]{definition}{Definition}{defstyle}{def}
+\newtcbtheorem[number within=section]{example}{Example}{exstyle}{ex}
+\newtcbtheorem[number within=section]{proposition}{Proposition}{thmstyle}{prop}
+\newtcbtheorem[number within=section]{corollary}{Corollary}{thmstyle}{cor}
+
+\newenvironment{keyresult}{%
+  \begin{tcolorbox}[keystyle]%
+}{%
+  \end{tcolorbox}%
+}
+
+% ---------- Math Operators ----------
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\newcommand{\arsinh}{\operatorname{arsinh}}
+\newcommand{\arcosh}{\operatorname{arcosh}}
+\newcommand{\artanh}{\operatorname{artanh}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\dx}{\,\mathrm{d}x}
+\newcommand{\dt}{\,\mathrm{d}t}
+\newcommand{\ds}{\,\mathrm{d}s}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\trans}{^{\mathsf{T}}}
+\newcommand{\inv}{^{-1}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+% ---------- Title ----------
+\title{%
+  \Huge\textbf{A-Level Further Mathematics}\\[0.5em]
+  \Large Cambridge Preparation Notes\\[1em]
+  \large Pure Mathematics: Hyperbolic Functions, Matrices,\\
+  Differentiation, Integration, Complex Numbers,\\
+  Differential Equations
+}
+\author{Rayyan Hanif bin Rizal, Kolej MARA Seremban}
+\date{}
+
+% =========================================================
+\begin{document}
+% =========================================================
+
+\maketitle
+\tableofcontents
+\newpage
+
+% =========================================================
+\chapter{Hyperbolic Functions}
+% =========================================================
+
+\section{Definitions and Exponential Forms}
+
+\begin{definition}{Hyperbolic Functions}{}
+For $x \in \R$:
+\[
+\sinh x = \frac{\e^x - \e^{-x}}{2}, \qquad
+\cosh x = \frac{\e^x + \e^{-x}}{2}, \qquad
+\tanh x = \frac{\sinh x}{\cosh x} = \frac{\e^x - \e^{-x}}{\e^x + \e^{-x}}.
+\]
+The reciprocal functions are $\csch x = 1/\sinh x$, $\sech x = 1/\cosh x$, $\coth x = 1/\tanh x$.
+\end{definition}
+
+\textit{Domain and range:} $\sinh:\R\to\R$ (bijection); $\cosh:\R\to[1,\infty)$ (even, minimum at $x=0$); $\tanh:\R\to(-1,1)$.
+
+\section{Fundamental Identities}
+
+\begin{keyresult}
+\textbf{Osborn's Rule.} Hyperbolic identities are obtained from trigonometric identities by replacing $\sin\theta$ with $\sinh x$ and $\cos\theta$ with $\cosh x$, \emph{and changing the sign of every product of two sinh terms}.
+\end{keyresult}
+
+Key identities (derivable directly from definitions):
+\begin{align}
+\cosh^2 x - \sinh^2 x &= 1 \label{eq:hpythagorean}\\
+\sinh(x \pm y) &= \sinh x\cosh y \pm \cosh x\sinh y \\
+\cosh(x \pm y) &= \cosh x\cosh y \pm \sinh x\sinh y \\
+\sinh 2x &= 2\sinh x\cosh x \\
+\cosh 2x &= \cosh^2 x + \sinh^2 x = 2\cosh^2 x - 1 = 1 + 2\sinh^2 x \\
+1 - \tanh^2 x &= \sech^2 x, \qquad \coth^2 x - 1 = \csch^2 x.
+\end{align}
+
+\textit{Derivation of \eqref{eq:hpythagorean}:}
+\[
+\cosh^2 x - \sinh^2 x
+= \frac{(\e^x+\e^{-x})^2 - (\e^x-\e^{-x})^2}{4}
+= \frac{4}{4} = 1.
+\]
+
+\section{Differentiation and Integration}
+
+\begin{proposition}{Derivatives of Hyperbolic Functions}{}
+\[
+\frac{\dd}{\dx}\sinh x = \cosh x, \quad
+\frac{\dd}{\dx}\cosh x = \sinh x, \quad
+\frac{\dd}{\dx}\tanh x = \sech^2 x.
+\]
+\end{proposition}
+
+\textit{Proof:} Differentiate the exponential definitions term by term. $\frac{\dd}{\dx}\sinh x = \frac{\e^x+\e^{-x}}{2}=\cosh x$, and similarly for others.
+
+Standard integrals follow immediately:
+\[
+\int\sinh x\dx = \cosh x + C,\quad
+\int\cosh x\dx = \sinh x + C,\quad
+\int\sech^2 x\dx = \tanh x + C.
+\]
+
+\section{Inverse Hyperbolic Functions}
+
+\begin{theorem}{Logarithmic Forms}{}
+\begin{align*}
+\arsinh x &= \ln\!\left(x + \sqrt{x^2+1}\right), \quad x\in\R,\\
+\arcosh x &= \ln\!\left(x + \sqrt{x^2-1}\right), \quad x\geq 1,\\
+\artanh x &= \tfrac{1}{2}\ln\!\left(\frac{1+x}{1-x}\right), \quad |x|<1.
+\end{align*}
+\end{theorem}
+
+\textit{Derivation of} $\arsinh$: Let $y=\sinh\inv x$, so $x=\sinh y=\frac{\e^y-\e^{-y}}{2}$. Then $\e^{2y}-2x\e^y-1=0$. Solving (positive root):
+\[
+\e^y = x+\sqrt{x^2+1} \implies y = \ln(x+\sqrt{x^2+1}).
+\]
+
+\begin{proposition}{Derivatives of Inverse Hyperbolic Functions}{}
+\[
+\begin{aligned}
+\frac{\mathrm{d}}{\mathrm{d}x}\arsinh x &= \frac{1}{\sqrt{x^2+1}}, \\
+\frac{\mathrm{d}}{\mathrm{d}x}\arcosh x &= \frac{1}{\sqrt{x^2-1}} \quad (x>1), \\
+\frac{\mathrm{d}}{\mathrm{d}x}\artanh x &= \frac{1}{1-x^2} \quad (|x|<1).
+\end{aligned}
+\]
+\end{proposition}
+
+\textit{Derivation:} Implicit differentiation. For $\displaystyle y=\arsinh x$: $\displaystyle x=\sinh y$, so $\displaystyle \frac{\dx}{\dd y}=\cosh y=\sqrt{1+\sinh^2 y}=\sqrt{1+x^2}$, giving $\displaystyle \frac{\dd y}{\dx}=\frac{1}{\sqrt{1+x^2}}$.
+
+\begin{keyresult}
+\textbf{Standard integral forms:}
+\[
+\begin{aligned}
+\int\frac{\dx}{\sqrt{x^2+a^2}} = \arsinh\frac{x}{a}+C = \ln\!\left(x+\sqrt{x^2+a^2}\right)+C, \\
+\int\frac{\dx}{\sqrt{x^2-a^2}} = \arcosh\frac{x}{a}+C\quad(x>a>0), \\
+\int\frac{\dx}{a^2-x^2} = \frac{1}{a}\artanh\frac{x}{a}+C\quad(|x|<a).
+\end{aligned}
+\]
+\end{keyresult}
+
+\begin{example}{Inverse Hyperbolic Integral}{}
+Evaluate $\displaystyle \int_0^2 \frac{\mathrm{d}x}{\sqrt{4+x^2}}$.
+
+\medskip
+
+\textbf{Solution.} Using $\displaystyle \text{arsinh}(x/2)$:
+\[
+\left[\arsinh\frac{x}{2}\right]_0^2 = \arsinh 1 - \arsinh 0 = \ln(1+\sqrt{2}).
+\]
+\end{example}
+
+\section*{Exercises — Chapter 1}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Show that $\displaystyle \cosh 2x = 1 + 2\sinh^2 x$ using the exponential definition.
+  \item Solve $\displaystyle 2\cosh x + \sinh x = 3$. (Express your answer as a natural logarithm.)
+  \item Differentiate $\displaystyle y = \arsinh(2x+1)$ and simplify fully.
+  \item Evaluate $\displaystyle\int_0^1\tanh x\dx$. (\textit{Hint:} $\tanh x = \frac{\sinh x}{\cosh x}$.)
+  \item \textbf{[Extension]} Prove that $\artanh(\tanh 2x) = 2x$ for all $x\in\R$, and use the logarithmic form of $\artanh$ to express $\tanh 2x$ as a ratio of exponentials. Verify using the definition.
+\end{enumerate}
+
+% =========================================================
+\chapter{Matrices 2: Eigenvalues, Eigenvectors, and Diagonalisation}
+% =========================================================
+
+\section{Eigenvalues and Eigenvectors}
+
+\begin{definition}{Eigenvalue and Eigenvector}{}
+Let $A$ be an $n\times n$ matrix. A scalar $\lambda\in\C$ is an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\vec{v}\in\C^n$ such that
+\[
+A\vec{v} = \lambda\vec{v}.
+\]
+Any such $\vec{v}$ is an \emph{eigenvector} corresponding to $\lambda$.
+\end{definition}
+
+\textbf{Finding eigenvalues.} The equation $A\vec{v}=\lambda\vec{v}$ has a non-trivial solution iff
+\[
+\det(A - \lambda I) = 0.
+\]
+This is the \emph{characteristic equation}. The polynomial $\chi_A(\lambda)=\det(A-\lambda I)$ is the \emph{characteristic polynomial} of degree $n$.
+
+\textbf{Finding eigenvectors.} For each eigenvalue $\lambda_i$, solve $(A-\lambda_i I)\vec{v}=\vec{0}$ (row-reduce). The solution space is the \emph{eigenspace} $E_{\lambda_i}$.
+
+\begin{example}{$3\times 3$ Eigenvalue Problem}{}
+Find the eigenvalues and eigenvectors of
+$A = \begin{pmatrix}4&1&0\\2&3&0\\0&0&5\end{pmatrix}$.
+
+\textit{Characteristic equation:}
+\[
+\det(A-\lambda I)=\det\begin{pmatrix}4-\lambda&1&0\\2&3-\lambda&0\\0&0&5-\lambda\end{pmatrix}
+=(5-\lambda)\bigl[(4-\lambda)(3-\lambda)-2\bigr]=0.
+\]
+Inner factor: $(4-\lambda)(3-\lambda)-2=\lambda^2-7\lambda+10=(\lambda-2)(\lambda-5)$.
+
+Eigenvalues: $\lambda_1=2,\;\lambda_2=5$ (double).
+
+For $\lambda=2$: $(A-2I)\vec{v}=\vec{0}$ gives $\begin{pmatrix}2&1&0\\2&1&0\\0&0&3\end{pmatrix}\vec{v}=\vec{0}$, so $v_3=0$, $2v_1+v_2=0$. Eigenvector: $\begin{pmatrix}1\\-2\\0\end{pmatrix}$.
+
+For $\lambda=5$: $(A-5I)\vec{v}=\vec{0}$ gives $\begin{pmatrix}-1&1&0\\2&-2&0\\0&0&0\end{pmatrix}$, so $v_1=v_2$, $v_3$ free. Two independent eigenvectors: $\begin{pmatrix}1\\1\\0\end{pmatrix}$, $\begin{pmatrix}0\\0\\1\end{pmatrix}$.
+\end{example}
+
+\section{Diagonalisation}
+
+\begin{theorem}{Diagonalisation}{}
+An $n\times n$ matrix $A$ is \emph{diagonalisable} iff it has $n$ linearly independent eigenvectors. If $P$ is the matrix whose columns are these eigenvectors, then
+\[
+P\inv A P = D = \operatorname{diag}(\lambda_1,\ldots,\lambda_n).
+\]
+Equivalently, $A = PDP\inv$.
+\end{theorem}
+
+\textit{Proof sketch.} The $k$-th column of $AP$ equals $A\vec{p}_k=\lambda_k\vec{p}_k$, which is the $k$-th column of $PD$. Thus $AP=PD$, and invertibility of $P$ (guaranteed by independence) gives $P\inv AP=D$.
+
+\begin{keyresult}
+\textbf{Matrix powers:} $A^n = PD^n P\inv$, where $D^n=\operatorname{diag}(\lambda_1^n,\ldots,\lambda_k^n)$.
+\end{keyresult}
+
+\begin{example}{Computing $A^n$ via Diagonalisation}{}
+Let $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$. Eigenvalues: $\lambda=2,4$ with eigenvectors $\begin{pmatrix}1\\-1\end{pmatrix},\begin{pmatrix}1\\1\end{pmatrix}$.
+
+\medskip
+
+With the modal matrix $P$ and its inverse $P^{-1}$ found as:
+\[
+P=\begin{pmatrix}1&1\\-1&1\end{pmatrix}, \quad P^{-1}=\tfrac{1}{2}\begin{pmatrix}1&-1\\1&1\end{pmatrix}
+\]
+We can compute $A^n$ by splitting the calculation across lines:
+\begin{align*}
+A^n &= P\begin{pmatrix}2^n&0\\0&4^n\end{pmatrix}P^{-1} \\
+&= \tfrac{1}{2}\begin{pmatrix}2^n+4^n & 4^n-2^n \\ 4^n-2^n & 2^n+4^n\end{pmatrix}.
+\end{align*}
+\end{example}
+
+\section{Symmetric Matrices and Orthogonal Diagonalisation}
+
+\begin{theorem}{Spectral Theorem (Real Symmetric Matrices)}{}
+If $A$ is a real symmetric matrix ($A=A\trans$), then:
+\begin{enumerate}[label=(\roman*)]
+  \item All eigenvalues of $A$ are real.
+  \item Eigenvectors corresponding to distinct eigenvalues are orthogonal.
+  \item $A$ is orthogonally diagonalisable: $A=QDQ\trans$ where $Q$ is orthogonal ($QQ\trans=I$).
+\end{enumerate}
+\end{theorem}
+
+\textit{Proof (reality of eigenvalues):} Let $A\vec{v}=\lambda\vec{v}$, $\vec{v}\neq\vec{0}$. Then $\bar{\vec{v}}\trans A\vec{v}=\lambda\|\vec{v}\|^2$. Since $A=A\trans=\bar{A}$, the left side is also $\overline{\bar{\vec{v}}\trans A\vec{v}}=\bar{\lambda}\|\vec{v}\|^2$. Hence $\lambda=\bar{\lambda}\in\R$.
+
+\section{Systems of Differential Equations via Matrices}
+
+A linear system $\dot{\vec{x}}=A\vec{x}$ (where $A$ is diagonalisable with $A=PDP\inv$) is decoupled by the substitution $\vec{x}=P\vec{y}$, giving $\dot{\vec{y}}=D\vec{y}$, i.e.\ $\dot{y}_k=\lambda_k y_k$ for each $k$. Thus $y_k=C_k\e^{\lambda_k t}$ and $\vec{x}=P\vec{y}$.
+
+\begin{example}{Decoupled System}{}
+Solve $\dot{x}=3x+y,\;\dot{y}=x+3y$ with $x(0)=1,y(0)=0$.
+
+From the previous example, $\lambda=2,4$, $P=\begin{pmatrix}1&1\\-1&1\end{pmatrix}$. The general solution is:
+\[
+\begin{pmatrix}x\\y\end{pmatrix}=C_1\e^{2t}\begin{pmatrix}1\\-1\end{pmatrix}+C_2\e^{4t}\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+Initial conditions: $C_1+C_2=1$, $-C_1+C_2=0\implies C_1=C_2=\tfrac{1}{2}$.
+\[
+x=\tfrac{1}{2}(\e^{2t}+\e^{4t}),\quad y=\tfrac{1}{2}(\e^{4t}-\e^{2t}).
+\]
+\end{example}
+
+\section*{Exercises --- Chapter 2}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Find the eigenvalues and eigenvectors of $\begin{pmatrix}1&2\\3&2\end{pmatrix}$.
+  \item Show that $A=\begin{pmatrix}0&1\\-1&2\end{pmatrix}$ is not diagonalisable over $\R$.
+  \item If $A$ has eigenvalues $\lambda_1,\lambda_2$, show $\det A=\lambda_1\lambda_2$ and $\operatorname{tr}A=\lambda_1+\lambda_2$.
+  \item Find $A^{10}$ for $A=\begin{pmatrix}5&3\\-2&0\end{pmatrix}$ using diagonalisation.
+  \item \textbf{[Extension]} Let $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&3\end{pmatrix}$. Determine whether $A$ is diagonalisable. If not, explain what obstruction arises. Find $A^n$ for the $3\times 3$ block by writing $A=D+N$ where $D$ is diagonal and $N$ is nilpotent, and use the fact that $DN=ND$ in this case.
+\end{enumerate}
+
+% =========================================================
+\chapter{Differentiation}
+% =========================================================
+
+\section{Implicit Differentiation}
+
+If $\displaystyle F(x,y)=0$ defines $\displaystyle y$ implicitly as a function of $\displaystyle x$, differentiate with respect to $\displaystyle x$ using the chain rule: wherever $\displaystyle y$ appears, multiply by $\displaystyle \frac{\dd y}{\dx}$.
+
+\begin{example}{Implicit Differentiation}{}
+Find $\displaystyle \frac{\dd y}{\dx}$ for $\displaystyle x^3 + y^3 = 3xy$ (the Folium of Descartes).
+
+Differentiating: $\displaystyle 3x^2 + 3y^2\frac{\dd y}{\dx} = 3y + 3x\frac{\dd y}{\dx}$.
+
+\[
+\frac{\dd y}{\dx}(3y^2-3x) = 3y-3x^2 \implies \frac{\dd y}{\dx}=\frac{y-x^2}{y^2-x}.
+\]
+\end{example}
+
+\textbf{Second derivatives implicitly.} Differentiate $\displaystyle \frac{\dd y}{\dx}=f(x,y)$ with respect to $\displaystyle x$, again using the chain rule on $y$ terms.
+
+\section{Parametric Differentiation}
+
+For a curve $\displaystyle x=f(t),\;y=g(t)$:
+\begin{align}
+\frac{\dd y}{\dx} &= \frac{\dot{g}(t)}{\dot{f}(t)}, \label{eq:param1}\\
+\frac{\dd^2 y}{\dx^2} &= \frac{\dfrac{\dd}{\dt}\!\left(\dfrac{\dd y}{\dx}\right)}{\dot{f}(t)}. \label{eq:param2}
+\end{align}
+
+\begin{example}{Parametric Second Derivative}{}
+For $\displaystyle x=t^2,\;y=t^3$: $\frac{\dd y}{\dx}=\frac{3t^2}{2t}=\frac{3t}{2}$.
+\[
+\frac{\dd^2 y}{\dx^2}=\frac{\frac{\dd}{\dt}(\frac{3t}{2})}{2t}=\frac{3/2}{2t}=\frac{3}{4t}.
+\]
+\end{example}
+
+\begin{keyresult}
+\textbf{Arc length (parametric):}
+\[
+L = \int_{t_1}^{t_2}\sqrt{\left(\frac{\dx}{\dt}\right)^2+\left(\frac{\dd y}{\dt}\right)^2}\dt.
+\]
+\end{keyresult}
+
+\section{Maclaurin and Taylor Series}
+
+\begin{definition}{Taylor and Maclaurin Series}{}
+If $\displaystyle f$ is infinitely differentiable at $a$:
+\[
+f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n.
+\]
+For $\displaystyle a=0$ this is the \emph{Maclaurin series} of $f$.
+\end{definition}
+
+\begin{keyresult}
+\textbf{Standard Maclaurin series} (valid for indicated domains):
+\begin{align*}
+\e^x &= \sum_{n=0}^{\infty}\frac{x^n}{n!} = 1+x+\frac{x^2}{2!}+\cdots & (x\in\R),\\
+\sin x &= \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!} & (x\in\R),\\
+\cos x &= \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{(2n)!} & (x\in\R),\\
+\ln(1+x) &= \sum_{n=1}^{\infty}\frac{(-1)^{n+1}x^n}{n} = x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots & (-1<x\leq 1),\\
+(1+x)^k &= \sum_{n=0}^{\infty}\binom{k}{n}x^n & (|x|<1),\\
+\sinh x &= x+\frac{x^3}{3!}+\frac{x^5}{5!}+\cdots & (x\in\R),\\
+\cosh x &= 1+\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots & (x\in\R).
+\end{align*}
+\end{keyresult}
+
+\textbf{Combining series.} New series are obtained by substitution, differentiation, or integration of known series.
+
+\begin{example}{Series by Composition}{}
+Find the Maclaurin series for $\ln(\cos x)$ up to the $x^4$ term.
+
+$\displaystyle \cos x = 1 - \frac{x^2}{2}+\frac{x^4}{24}-\cdots$. Let $\displaystyle u=-\frac{x^2}{2}+\frac{x^4}{24}-\cdots$ so $\displaystyle \ln(\cos x)=\ln(1+u)=u-\frac{u^2}{2}+\cdots$
+\[
+= -\frac{x^2}{2}+\frac{x^4}{24} - \frac{1}{2}\!\left(\frac{x^2}{2}\right)^2+O(x^6)
+= -\frac{x^2}{2}-\frac{x^4}{12}+O(x^6).
+\]
+\end{example}
+
+\section{L'H\^opital's Rule}
+
+\begin{theorem}{L'H\^opital's Rule}{}
+If $\displaystyle \lim_{x\to a}f(x)=\lim_{x\to a}g(x)=0$ (or both $\displaystyle \pm\infty$) and $\displaystyle g'(x)\neq0$ near $\displaystyle a$, then
+\[
+\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)},
+\]
+provided the right-hand limit exists.
+\end{theorem}
+
+The rule applies repeatedly. Indeterminate forms $\displaystyle 0\cdot\infty$, $\displaystyle \infty-\infty$, $\displaystyle 0^0$, $\displaystyle \infty^0$, $\displaystyle 1^\infty$ are first converted to $\displaystyle 0/0$ or $\displaystyle \infty/\infty$.
+
+\section*{Exercises --- Chapter 3}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Find $\displaystyle \dfrac{\dd y}{\dx}$ given $\displaystyle \e^{xy}+y^2=x$.
+  \item For $\displaystyle x=a\cos t,\;y=b\sin t$, find $\displaystyle \dfrac{\dd^2 y}{\dx^2}$ in terms of $\displaystyle t$.
+  \item Find the Maclaurin series for $\displaystyle \tan x$ up to and including the $\displaystyle x^5$ term. (\textit{Hint:} use $\displaystyle \sin x = \cos x\displaystyle \cdot\tan x$ and compare series.)
+  \item Use L'H\^opital's rule to evaluate $\displaystyle \lim_{x\to 0}\dfrac{x-\sin x}{x^3}$.
+  \item \textbf{[Extension]} Derive the Maclaurin series for $\displaystyle \arctan x$ by integrating $\displaystyle \frac{1}{1+x^2}$ term by term. Hence show $\displaystyle \frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-\cdots$ (Leibniz formula), and estimate the error in approximating $\displaystyle \pi/4$ by the partial sum of $\displaystyle n$ terms.
+\end{enumerate}
+
+% =========================================================
+\chapter{Integration}
+% =========================================================
+
+\section{Integration by Parts}
+
+\begin{keyresult}
+$\displaystyle\int u\,\dd v = uv - \int v\,\dd u$, or equivalently $\displaystyle\int u\,v'\dx = uv - \int u'v\dx$.
+
+\textbf{LIATE priority for $u$:} Logarithms, Inverse trig, Algebraic, Trigonometric, Exponential.
+\end{keyresult}
+
+\begin{example}{Repeated Integration by Parts}{}
+$\displaystyle I=\int x^2\e^x\dx$. Apply twice:
+\[
+I = x^2\e^x - 2\int x\e^x\dx = x^2\e^x - 2(x\e^x-\e^x)+C = \e^x(x^2-2x+2)+C.
+\]
+\end{example}
+
+\section{Integration by Substitution}
+
+Standard substitutions:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Integrand contains & Substitution & Result\\
+\midrule
+$\sqrt{a^2-x^2}$ & $x=a\sin\theta$ & Removes square root\\
+$\sqrt{a^2+x^2}$ & $x=a\tan\theta$ or $x=a\sinh t$ & \\
+$\sqrt{x^2-a^2}$ & $x=a\sec\theta$ or $x=a\cosh t$ & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{example}{Trigonometric Substitution}{}
+$\displaystyle\int\frac{\dx}{(a^2-x^2)^{3/2}}$, let $x=a\sin\theta$:
+\[
+= \int\frac{a\cos\theta\dd\theta}{a^3\cos^3\theta}=\frac{1}{a^2}\int\sec^2\theta\dd\theta=\frac{\tan\theta}{a^2}+C=\frac{x}{a^2\sqrt{a^2-x^2}}+C.
+\]
+\end{example}
+
+\section{Partial Fractions}
+
+For a rational function $P(x)/Q(x)$ with $\deg P<\deg Q$, decompose $Q$ into factors:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Factor in $Q(x)$ & Partial fraction form\\
+\midrule
+$(x-a)$ & $\dfrac{A}{x-a}$\\[6pt]
+$(x-a)^n$ & $\dfrac{A_1}{x-a}+\cdots+\dfrac{A_n}{(x-a)^n}$\\[6pt]
+$(x^2+bx+c)$ irreducible & $\dfrac{Ax+B}{x^2+bx+c}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Reduction Formulae}
+
+A \emph{reduction formula} expresses $I_n$ in terms of $I_{n-1}$ (or $I_{n-2}$), enabling computation for general $n$.
+
+\begin{example}{Derivation: $I_n=\int_0^{\pi/2}\sin^n x\dx$}{}
+Integrate by parts with $u=\sin^{n-1}x$, $\dd v=\sin x\dx$:
+\[
+I_n = \bigl[-\sin^{n-1}x\cos x\bigr]_0^{\pi/2}+(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2 x\dx.
+\]
+The boundary term vanishes. Using $\cos^2 x=1-\sin^2 x$:
+\[
+I_n=(n-1)I_{n-2}-(n-1)I_n \implies I_n = \frac{n-1}{n}I_{n-2}.
+\]
+With $\displaystyle I_0=\pi/2$ and $\displaystyle I_1=1$, this gives Wallis-type results.
+\end{example}
+
+\begin{keyresult}
+\textbf{Wallis's formula:}
+\[
+\frac{\pi}{2}=\prod_{n=1}^{\infty}\frac{(2n)(2n)}{(2n-1)(2n+1)}=\frac{2\cdot2}{1\cdot3}\cdot\frac{4\cdot4}{3\cdot5}\cdot\frac{6\cdot6}{5\cdot7}\cdots
+\]
+\end{keyresult}
+
+\section{Applications of Integration}
+
+\subsection{Arc Length}
+
+For $\displaystyle y=f(x)$ on $\displaystyle [a,b]$:
+\[
+L = \int_a^b\sqrt{1+\left(\frac{\dd y}{\dx}\right)^2}\dx.
+\]
+
+\subsection{Surface of Revolution}
+
+Rotating $\displaystyle y=f(x)\geq 0$ about the $\displaystyle x$-axis on $\displaystyle [a,b]$:
+\[
+S = 2\pi\int_a^b y\sqrt{1+\left(\frac{\dd y}{\dx}\right)^2}\dx.
+\]
+
+\subsection{Volumes of Revolution}
+
+Rotating $\displaystyle y=f(x)$ about the $\displaystyle x$-axis (disc method):
+\[
+V = \pi\int_a^b y^2\dx.
+\]
+
+\begin{example}{Volume via Disc Method}{}
+Volume of sphere radius $\displaystyle r$: rotate $\displaystyle y=\sqrt{r^2-x^2}$ about the $\displaystyle x$-axis on $\displaystyle [-r,r]$:
+\[
+V=\pi\int_{-r}^{r}(r^2-x^2)\dx=\pi\left[r^2x-\frac{x^3}{3}\right]_{-r}^{r}=\frac{4\pi r^3}{3}.
+\]
+\end{example}
+
+\section{Improper Integrals}
+
+An integral is \emph{improper} if the interval is unbounded or the integrand is unbounded on the interval. Evaluate as a limit:
+\[
+\int_a^{\infty}f(x)\dx = \lim_{R\to\infty}\int_a^R f(x)\dx,
+\]
+converges if the limit exists and is finite.
+
+\begin{example}{Gamma Function at $n=1$}{}
+$\displaystyle\int_0^{\infty}x\e^{-x}\dx$. Integration by parts:
+$\displaystyle \bigl[-x\e^{-x}\bigr]_0^{\infty}+\int_0^{\infty}\e^{-x}\dx = 0+1=1.$
+\end{example}
+
+\section*{Exercises --- Chapter 4}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Find $\displaystyle\int x^3\ln x\dx$.
+  \item Evaluate $\displaystyle\int\frac{3x+1}{(x+1)(x^2+1)}\dx$ using partial fractions.
+  \item Establish the reduction formula $J_n = \displaystyle\int_0^1 x^n\e^x\dx = \e-nJ_{n-1}$, and compute $J_2$.
+  \item Find the arc length of $y=\cosh x$ for $0\leq x\leq 1$.
+  \item \textbf{[Extension]} Show that $\displaystyle\int_0^\infty\e^{-x^2}\dx=\frac{\sqrt{\pi}}{2}$ using the following argument: let $\displaystyle I=\int_0^\infty\e^{-x^2}\dx$, write $\displaystyle I^2=\int_0^\infty\int_0^\infty\e^{-(x^2+y^2)}\dx\dd y$, convert to polar coordinates, and evaluate.
+\end{enumerate}
+
+% =========================================================
+\chapter{Complex Numbers}
+% =========================================================
+
+\section{Modulus-Argument Form and Euler's Formula}
+
+\begin{keyresult}
+\textbf{Euler's formula:} $\e^{\ii\theta}=\cos\theta+\ii\sin\theta$.
+
+Every non-zero $\displaystyle z\in\C$ can be written $\displaystyle z=r\e^{\ii\theta}=r(\cos\theta+\ii\sin\theta)$, where $\displaystyle r=|z|>0$ and $\displaystyle \theta=\arg z$.
+\end{keyresult}
+
+\textit{Derivation from Maclaurin series:} Compare series expansions:
+\[
+\e^{\ii\theta}=1+\ii\theta+\frac{(\ii\theta)^2}{2!}+\frac{(\ii\theta)^3}{3!}+\cdots=\left(1-\frac{\theta^2}{2!}+\cdots\right)+\ii\left(\theta-\frac{\theta^3}{3!}+\cdots\right)=\cos\theta+\ii\sin\theta.
+\]
+
+\textbf{Multiplication and division:}
+\[
+z_1z_2 = r_1r_2\,\e^{\ii(\theta_1+\theta_2)}, \qquad
+\frac{z_1}{z_2}=\frac{r_1}{r_2}\,\e^{\ii(\theta_1-\theta_2)}.
+\]
+
+\section{De Moivre's Theorem}
+
+\begin{theorem}{De Moivre's Theorem}{}
+For $\displaystyle n\in\Z$ (and more generally $\displaystyle n\in\R$ for principal values):
+\[
+(\cos\theta+\ii\sin\theta)^n = \cos n\theta+\ii\sin n\theta.
+\]
+\end{theorem}
+
+\textit{Proof (integer $\displaystyle n$):} By Euler's formula, $\displaystyle (\e^{\ii\theta})^n=\e^{\ii n\theta}$.
+
+\subsection{Multiple Angle Formulae}
+
+From De Moivre with $\displaystyle z=\cos\theta+\ii\sin\theta$, let $\displaystyle z^n+z^{-n}=2\cos n\theta$ and $\displaystyle z^n-z^{-n}=2\ii\sin n\theta$.
+
+Express powers of $\cos\theta$ and $\sin\theta$ in terms of multiples, or vice versa.
+
+\begin{example}{Expressing $\cos^4\theta$}{}
+Let $\displaystyle c=\cos\theta+\ii\sin\theta$. Then $\displaystyle 2\cos\theta=c+c^{-1}$, so
+\[
+(2\cos\theta)^4=(c+c^{-1})^4=c^4+4c^2+6+4c^{-2}+c^{-4}=2\cos4\theta+8\cos2\theta+6.
+\]
+Thus $\displaystyle \cos^4\theta=\frac{1}{8}(\cos4\theta+4\cos2\theta+3)$.
+\end{example}
+
+\section{Roots of Complex Numbers}
+
+The equation $\displaystyle z^n=w$ has exactly $\displaystyle n$ roots. Writing $\displaystyle w=R\e^{\ii\phi}$:
+\[
+z_k = R^{1/n}\exp\!\left(\ii\,\frac{\phi+2k\pi}{n}\right), \quad k=0,1,\ldots,n-1.
+\]
+These $\displaystyle n$ roots lie equally spaced on a circle of radius $R^{1/n}$ in the Argand diagram.
+
+\begin{example}{Cube Roots of Unity}{}
+Solve $\displaystyle z^3=1$: $z_k=\e^{2k\pi\ii/3}$, $\displaystyle k=0,1,2$.
+\[
+z_0=1,\quad z_1=\e^{2\pi\ii/3}=-\tfrac{1}{2}+\tfrac{\sqrt{3}}{2}\ii\eqqcolon\omega,\quad z_2=\e^{4\pi\ii/3}=-\tfrac{1}{2}-\tfrac{\sqrt{3}}{2}\ii=\omega^2.
+\]
+\textbf{Key property:} $\displaystyle 1+\omega+\omega^2=0$, $\displaystyle \omega^3=1$.
+\end{example}
+
+\begin{keyresult}
+\textbf{Sum of roots of unity:} For $\displaystyle \omega=\e^{2\pi\ii/n}$,
+\[
+\sum_{k=0}^{n-1}\omega^k = \frac{\omega^n-1}{\omega-1} = 0.
+\]
+\end{keyresult}
+
+\section{Loci in the Argand Diagram}
+
+Common loci arising from conditions on $z$:
+\begin{itemize}
+  \item $\displaystyle |z-a|=r$: circle centre $a$, radius $r$.
+  \item $\displaystyle |z-a|=|z-b|$: perpendicular bisector of segment $ab$.
+  \item $\displaystyle \arg(z-a)=\alpha$: ray from $a$ at angle $\alpha$ (excluding $a$).
+  \item $\displaystyle |z-a|/|z-b|=k$ ($k\neq1$): circle (Apollonius circle).
+  \item $\displaystyle \arg\!\left(\dfrac{z-a}{z-b}\right)=\alpha$: arc of circle through $\displaystyle a$ and $\displaystyle b$ subtending angle $\displaystyle \alpha$.
+\end{itemize}
+
+\begin{example}{Locus Problem}{}
+Describe the locus of $z$ satisfying $\left|\dfrac{z-2}{z+2}\right|=2$.
+
+This is $|z-2|=2|z+2|$, an Apollonius circle. Writing $z=x+\ii y$:
+\[
+(x-2)^2+y^2 = 4[(x+2)^2+y^2].
+\]
+Expanding and simplifying: $3x^2+3y^2+20x+12=0$, i.e.\ $(x+\tfrac{10}{3})^2+y^2=\tfrac{28}{9}$. Circle, centre $(-\tfrac{10}{3},0)$, radius $\tfrac{2\sqrt{7}}{3}$.
+\end{example}
+
+\section{Complex Exponentials and Trigonometry}
+
+\begin{keyresult}
+$\cos\theta=\dfrac{\e^{\ii\theta}+\e^{-\ii\theta}}{2}$, \quad
+$\sin\theta=\dfrac{\e^{\ii\theta}-\e^{-\ii\theta}}{2\ii}$.
+
+These unify hyperbolic and trigonometric functions: $\cos(\ii x)=\cosh x$, $\sin(\ii x)=\ii\sinh x$.
+\end{keyresult}
+
+\section*{Exercises --- Chapter 5}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Use De Moivre's theorem to express $\sin 5\theta$ in terms of $\sin\theta$.
+  \item Find all fifth roots of $-32$ in the form $r\e^{\ii\theta}$.
+  \item Sketch the locus of $z$ such that $\arg(z-1-\ii)=\pi/4$, stating clearly which point is excluded.
+  \item Show that $\displaystyle\sum_{k=0}^{n-1}\cos(a+kd)=\frac{\sin(nd/2)}{\sin(d/2)}\cos\!\left(a+\frac{(n-1)d}{2}\right)$ using the real part of a geometric series in $\e^{\ii d}$.
+  \item \textbf{[Extension]} Let $\omega=\e^{2\pi\ii/7}$. Evaluate $\displaystyle\prod_{k=1}^{6}(2-\omega^k)$ by considering the polynomial $z^7-1$ factored over $\C$, and substituting $z=2$. Hence find $\displaystyle\prod_{k=1}^{6}|2-\omega^k|$.
+\end{enumerate}
+
+% =========================================================
+\chapter{Differential Equations}
+% =========================================================
+
+\section{First-Order ODEs}
+
+\subsection{Separable Equations}
+
+An ODE of the form $\displaystyle \dfrac{\dd y}{\dx}=f(x)g(y)$ is separable:
+\[
+\int\frac{\dd y}{g(y)}=\int f(x)\dx+C.
+\]
+
+\subsection{Integrating Factor Method}
+
+The linear first-order ODE $\displaystyle \dfrac{\dd y}{\dx}+P(x)y=Q(x)$ is solved by the integrating factor $\displaystyle \mu(x)=\e^{\int P(x)\dx}$:
+\[
+\frac{\dd}{\dx}(\mu y)=\mu Q \implies \mu y = \int\mu Q\dx + C.
+\]
+
+\textit{Derivation:} Multiply through by $\displaystyle \mu$: $\displaystyle \mu y'+\mu Py=\mu Q$. The left side is $\displaystyle (\mu y)'$ if $\displaystyle \mu'=\mu P$, i.e.\ $\displaystyle \mu=\e^{\int P\dx}$.
+
+\begin{example}{Integrating Factor}{}
+Solve $\displaystyle \dfrac{\dd y}{\dx}+\dfrac{2y}{x}=x^2$.
+
+$\displaystyle P=2/x$, so $\displaystyle \mu=\e^{2\ln x}=x^2$. Multiply: $\displaystyle (x^2 y)'=x^4$.
+\[
+x^2 y = \frac{x^5}{5}+C \implies y=\frac{x^3}{5}+Cx^{-2}.
+\]
+\end{example}
+
+\subsection{Homogeneous Equations}
+
+$\displaystyle \dfrac{\dd y}{\dx}=f(y/x)$: substitute $v=y/x$ so $y=vx$, $y'=v+xv'$.
+
+\subsection{Bernoulli Equations}
+
+$\displaystyle \dfrac{\dd y}{\dx}+P(x)y=Q(x)y^n$: substitute $w=y^{1-n}$ to linearise.
+
+\section{Second-Order Linear ODEs with Constant Coefficients}
+
+The equation $\displaystyle ay''+by'+cy=f(x)$ has general solution $\displaystyle y=y_{\rm c}+y_{\rm p}$, where $\displaystyle y_{\rm c}$ (complementary function) solves the homogeneous equation and $\displaystyle _{\rm p}$ is any particular integral.
+
+\subsection{Complementary Function}
+
+Solve the \emph{auxiliary equation} $\displaystyle a\lambda^2+b\lambda+c=0$. Let $\displaystyle \Delta=b^2-4ac$.
+
+\begin{keyresult}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Case & Roots & Complementary function $\displaystyle y_{\rm c}$\\
+\midrule
+$\displaystyle \Delta>0$ & real distinct $\displaystyle \lambda_1\neq\lambda_2$ & $\displaystyle A\e^{\lambda_1 x}+B\e^{\lambda_2 x}$\\
+$\displaystyle \Delta=0$ & repeated $\displaystyle \lambda$ & $\displaystyle (A+Bx)\e^{\lambda x}$\\
+$\displaystyle \Delta<0$ & complex $\displaystyle \alpha\pm\ii\beta$ & $\displaystyle \e^{\alpha x}(A\cos\beta x+B\sin\beta x)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keyresult}
+
+\subsection{Particular Integral by Method of Undetermined Coefficients}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+$f(x)$ & Trial $y_{\rm p}$\\
+\midrule
+$P_n(x)$ (polynomial degree $n$) & $Q_n(x)$ (polynomial degree $n$)$^*$\\
+$\e^{kx}$ & $C\e^{kx}$\;$^*$\\
+$\e^{kx}P_n(x)$ & $\e^{kx}Q_n(x)$\;$^*$\\
+$\cos kx$ or $\sin kx$ & $A\cos kx+B\sin kx$\;$^*$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$^*$ Multiply by $x^s$ where $s$ is the smallest non-negative integer such that no term of the trial solution is in $y_{\rm c}$.
+
+\begin{example}{Full Solution of Second-Order ODE}{}
+Solve $y''-3y'+2y=\e^x$.
+
+Auxiliary equation: $\lambda^2-3\lambda+2=(\lambda-1)(\lambda-2)=0$. Roots $\lambda=1,2$, so $y_{\rm c}=A\e^x+B\e^{2x}$.
+
+Since $\e^x$ is in $y_{\rm c}$, try $y_{\rm p}=Cx\e^x$:
+\[
+y_{\rm p}'=C\e^x(1+x),\quad y_{\rm p}''=C\e^x(2+x).
+\]
+Substituting: $C\e^x(2+x)-3C\e^x(1+x)+2Cx\e^x=C\e^x(2+x-3-3x+2x)=C\e^x(x-1-x)\cdot... $
+
+Let us redo: $y_{\rm p}''-3y_{\rm p}'+2y_{\rm p}=C\e^x(2+x)-3C\e^x(1+x)+2Cx\e^x=C\e^x[(2+x-3-3x+2x)]=C\e^x(2-3)=-C\e^x$.
+
+So $-C\e^x=\e^x\implies C=-1$. General solution: $y=A\e^x+B\e^{2x}-x\e^x$.
+\end{example}
+
+\section{Variation of Parameters}
+
+For $ay''+by'+cy=f(x)$ with complementary function $y_{\rm c}=Ay_1+By_2$, the particular integral is:
+\[
+y_{\rm p} = -y_1\int\frac{y_2 f}{W}\dx + y_2\int\frac{y_1 f}{W}\dx,
+\]
+where $W=y_1y_2'-y_2y_1'$ is the \emph{Wronskian}.
+
+\section{Euler--Cauchy Equation}
+
+The equation $ax^2y''+bxy'+cy=f(x)$ is solved by the substitution $x=\e^t$, transforming it to a constant-coefficient ODE in $t$.
+
+\textit{Key identities under $x=\e^t$:}
+\[
+xy' = \dot{y},\qquad x^2y'' = \ddot{y}-\dot{y},
+\]
+where dots denote $\dd/\dt$.
+
+\section{Simple Harmonic Motion and Damping}
+
+The equation $\ddot{x}+\omega^2 x=0$ (simple harmonic motion) has solution $x=A\cos\omega t+B\sin\omega t$.
+
+The damped oscillator $\ddot{x}+2k\dot{x}+\omega^2 x=0$:
+\begin{itemize}
+  \item $k<\omega$ (underdamped): $x=\e^{-kt}(A\cos\mu t+B\sin\mu t)$, $\mu=\sqrt{\omega^2-k^2}$.
+  \item $k=\omega$ (critically damped): $x=(A+Bt)\e^{-kt}$.
+  \item $k>\omega$ (overdamped): $x=A\e^{\lambda_1 t}+B\e^{\lambda_2 t}$, both $\lambda_i<0$.
+\end{itemize}
+
+\begin{example}{Forced Oscillator}{}
+Solve $\ddot{x}+4x=3\cos t$, $x(0)=0$, $\dot{x}(0)=0$.
+
+$y_{\rm c}=A\cos2t+B\sin2t$. Try $y_{\rm p}=C\cos t$: $-C\cos t+4C\cos t=3\cos t\implies C=1$.
+
+So $x=A\cos2t+B\sin2t+\cos t$. Applying ICs: $A+1=0$, $2B=0$, giving $A=-1$, $B=0$.
+\[
+x=\cos t-\cos2t.
+\]
+\end{example}
+
+\section{Resonance}
+
+If $f(x)=\cos\omega t$ and the natural frequency is also $\omega$ (i.e.\ $\omega^2=\omega_{\rm n}^2$ in the auxiliary equation), the trial PI must be multiplied by $t$, giving \emph{resonance}: amplitude grows without bound as $t\to\infty$.
+
+\section*{Exercises --- Chapter 6}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item Solve $\dfrac{\dd y}{\dx}=\dfrac{x(1+y^2)}{y(1+x^2)}$ with $y(0)=1$.
+  \item Find the general solution of $y''-5y'+6y=\e^{2x}+x$.
+  \item Solve the IVP $y''+2y'+5y=0$, $y(0)=1$, $y'(0)=0$.
+  \item Use the substitution $v=y/x$ to solve $\dfrac{\dd y}{\dx}=\dfrac{y}{x}+\tan\!\left(\dfrac{y}{x}\right)$.
+  \item \textbf{[Extension]} Consider $\ddot{x}+\omega^2 x=F\cos\omega t$ (resonant forcing). Assume the general solution takes the form $x=(A+Ct)\cos\omega t+(B+Dt)\sin\omega t$. Substitute into the ODE and show $D=F/(2\omega)$, $C=0$. With $x(0)=\dot{x}(0)=0$, write the full solution and describe the long-term behaviour.
+\end{enumerate}
+
+\newpage
+
+\section*{Exploration Questions}
+
+\hrulefill
+
+\subsection*{Complex Numbers and De Moivre's Theorem}
+\begin{itemize}
+\item Investigate the geometric shape formed by the roots of $z^n = 1$ in the Argand diagram for different values of $n$. Describe how symmetry changes as $n$ increases.
+\item Explore how the expression $(\cos \theta + i \sin \theta)^n$ can be used to generate trigonometric identities for $\cos(n\theta)$ and $\sin(n\theta)$ beyond standard textbook forms.
+\item Examine what happens to the roots of a complex polynomial when coefficients are slightly perturbed from real to complex values.
+\end{itemize}
+
+\subsection*{Roots of Unity and Loci}
+\begin{itemize}
+\item Explore the locus of points satisfying $|z - 1| = |z + 1|$ and extend this idea to $|z - a| = |z - b|$ for complex constants $a$ and $b$.
+\item Investigate how the sum of the $n$th roots of unity behaves when weighted by powers, such as $\sum_{k=0}^{n-1} k \omega^k$.
+\item Study geometric transformations produced by multiplying a complex number by a fixed root of unity.
+\end{itemize}
+
+\subsection*{Hyperbolic Functions}
+\begin{itemize}
+\item Investigate the relationship between hyperbolic identities and circular trigonometric identities using exponential definitions.
+\item Explore how $\cosh x$ and $\sinh x$ describe the geometry of a catenary curve and compare it with a parabola.
+\item Study how inverse hyperbolic functions arise naturally in solving integrals involving quadratic expressions.
+\end{itemize}
+
+\subsection*{Differential Equations}
+\begin{itemize}
+\item Investigate how different initial conditions affect the family of solutions to $\frac{dy}{dx} = ky$ and interpret this as a growth model.
+\item Explore the behaviour of solutions to $\frac{d^2y}{dx^2} + \omega^2 y = 0$ under varying $\omega$ and connect this to oscillatory motion.
+\item Study how substitution methods can transform nonlinear differential equations into linear ones.
+\end{itemize}
+
+\subsection*{Polar Coordinates}
+\begin{itemize}
+\item Investigate how curves of the form $r = a + b \sin \theta$ change shape as $a$ and $b$ vary.
+\item Explore conditions under which polar curves intersect themselves and how to detect these intersections analytically.
+\item Study how converting between Cartesian and polar form changes the complexity of curve equations.
+\end{itemize}
+
+\subsection*{Matrices and Transformations}
+\begin{itemize}
+\item Investigate how repeated application of a matrix transformation affects geometric shapes in the plane.
+\item Explore conditions under which a matrix represents a rotation, reflection, or shear.
+\item Study eigenvalues as scaling factors and interpret them geometrically in two-dimensional transformations.
+\end{itemize}
+
+\subsection*{Further Investigation}
+\begin{itemize}
+\item Explore how different topics in this syllabus connect, such as complex numbers and rotations, or differential equations and exponential functions.
+\item Investigate whether a single mathematical structure can unify transformations, differential equations, and complex numbers.
+\end{itemize}
+
+\vspace*{\fill}
+\hrulefill
+\begin{center}
+\textit{“The beauty of mathematics only reveals itself to more patient followers.”}
+
+Maryam Mirzakhani
+\end{center}
+
+\vspace*{\fill}
+\end{document}
